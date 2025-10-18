@@ -17,7 +17,7 @@ public interface ICliente {
 
     public boolean insertar(Cliente cliente);
 
-    public boolean eliminar(Cliente cliente);
+    public boolean eliminar(int idCliente);
 
     public boolean editar(Cliente cliente);
 }

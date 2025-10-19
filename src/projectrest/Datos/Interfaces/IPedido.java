@@ -13,11 +13,11 @@ import java.util.List;
  */
 public interface IPedido {
 
-    public List<Pedido> listar(String texto);
+    public List<Pedido> listar(int idCliente);
 
     public boolean insertar(Pedido pedido);
 
-    public boolean eliminar(Pedido pedido);
+    public boolean eliminar(int idPedido);
 
     public boolean editar(Pedido pedido);
 }

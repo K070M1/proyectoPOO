@@ -95,7 +95,7 @@ public class ClienteDAO implements ICliente {
     public boolean eliminar(int idCliente) {
         confirmacion = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Cliente WHERE idCliente = ?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM Clientes WHERE idCliente = ?");
             ps.setInt(1, idCliente);
             confirmacion = ps.executeUpdate() > 0 || false;
             ps.close();

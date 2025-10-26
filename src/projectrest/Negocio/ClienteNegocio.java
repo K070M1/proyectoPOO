@@ -29,7 +29,7 @@ public class ClienteNegocio {
 
         String[] columnas = {"ID", "Nombres", "Categoria", "Correo", "Telefono"};
         this.dtm = new DefaultTableModel(null, columnas);
-        String[] registro = new String[4];
+        String[] registro = new String[5];
         String estado;
         for (Cliente item : lista) {
             registro[0] = Integer.toString(item.getIdCliente());

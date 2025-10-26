@@ -24,7 +24,7 @@ public class ClienteDAO implements ICliente {
     public List<Cliente> listar(String texto) {
         List<Cliente> registros = new ArrayList<>();
         try {
-            ps = CNX.conectar().prepareStatement("SELEC * FROM Clientes WHERE nombreCategoria LIKE ?");
+            ps = CNX.conectar().prepareStatement("SELECT * FROM Cliente WHERE nombreCompleto LIKE ?");
             ps.setString(1, "%" + texto + "%");
             rs = ps.executeQuery();
 

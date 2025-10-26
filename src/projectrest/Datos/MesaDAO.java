@@ -26,7 +26,7 @@ public class MesaDAO implements IMesa {
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT idMesa, nroMesa, maximoClientes "
-                    + "FROM Mesas "
+                    + "FROM Mesa "
                     + "WHERE nroMesa LIKE ? "
                     + "ORDER BY idMesa DESC"
             );

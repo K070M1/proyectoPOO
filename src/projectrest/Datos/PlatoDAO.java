@@ -1,83 +1,127 @@
 package projectrest.Datos;
 
-import projectrest.Entidades.Plato;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import projectrest.Conexion.Conexion;
+import projectrest.Datos.Interfaces.IPlato;
+import projectrest.Entidades.Plato;
 
-public class PlatoDAO {
-    private List<Plato> platos = new ArrayList<>();
-    private int nextId = 1;
-    
+public class PlatoDAO implements IPlato {
+
+    private final Conexion CNX;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
     public PlatoDAO() {
-        platos.add(new Plato(1, "P001", "Lomo Saltado", "Plato tradicional peruano", "Plato Principal", 35.0f, true, "lomo.jpg"));
-        platos.add(new Plato(2, "P002", "Ceviche", "Ceviche de pescado", "Entrada", 25.0f, true, "ceviche.jpg"));
-        platos.add(new Plato(3, "P003", "Suspiro Limeño", "Postre tradicional", "Postre", 15.0f, true, "suspiro.jpg"));
+        this.CNX = Conexion.getInstancia();
     }
-    
-    public List<Plato> listarTodos() {
-        return new ArrayList<>(platos);
-    }
-    
-    public List<Plato> listarActivos() {
-        List<Plato> activos = new ArrayList<>();
-        for (Plato plato : platos) {
-            if (plato.isEstadoPlato()) {
-                activos.add(plato);
+
+    @Override
+    public List<Plato> listar(String texto) {
+        List<Plato> registros = new ArrayList<>();
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "SELECT idPlato, codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia "
+                    + "FROM Platos WHERE nombre LIKE ? OR codigo LIKE ? OR categoriaPlato LIKE ? ORDER BY idPlato DESC"
+            );
+            ps.setString(1, "%" + texto + "%");
+            ps.setString(2, "%" + texto + "%");
+            ps.setString(3, "%" + texto + "%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Plato plato = new Plato();
+                plato.setIdPlato(rs.getInt(1));
+                plato.setCodigo(rs.getString(2));
+                plato.setNombre(rs.getString(3));
+                plato.setDescripcion(rs.getString(4));
+                plato.setCategoriaPlato(rs.getString(5));
+                plato.setPrecio(rs.getFloat(6));
+                plato.setEstadoPlato(rs.getBoolean(7));
+                plato.setImagenReferencia(rs.getString(8));
+                registros.add(plato);
             }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            rs = null;
+            CNX.desconectar();
         }
-        return activos;
+        return registros;
     }
-    
+
+    @Override
     public boolean insertar(Plato plato) {
-        plato.setIdPlato(nextId++);
-        return platos.add(plato);
-    }
-    
-    public boolean actualizar(Plato plato) {
-        for (int i = 0; i < platos.size(); i++) {
-            if (platos.get(i).getIdPlato() == plato.getIdPlato()) {
-                platos.set(i, plato);
-                return true;
-            }
+        boolean ok = false;
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "INSERT INTO Platos (codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia) VALUES (?,?,?,?,?,?,?)"
+            );
+            ps.setString(1, plato.getCodigo());
+            ps.setString(2, plato.getNombre());
+            ps.setString(3, plato.getDescripcion());
+            ps.setString(4, plato.getCategoriaPlato());
+            ps.setFloat(5, plato.getPrecio());
+            ps.setBoolean(6, plato.isEstadoPlato());
+            ps.setString(7, plato.getImagenReferencia());
+            ok = ps.executeUpdate() > 0;
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            CNX.desconectar();
         }
-        return false;
+        return ok;
     }
-    
-    public Plato buscarPorId(int idPlato) {
-        for (Plato plato : platos) {
-            if (plato.getIdPlato() == idPlato) {
-                return plato;
-            }
+
+    @Override
+    public boolean editar(Plato plato) {
+        boolean ok = false;
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "UPDATE Platos SET codigo=?, nombre=?, descripcion=?, categoriaPlato=?, precio=?, estadoPlato=?, imagenReferencia=? WHERE idPlato=?"
+            );
+            ps.setString(1, plato.getCodigo());
+            ps.setString(2, plato.getNombre());
+            ps.setString(3, plato.getDescripcion());
+            ps.setString(4, plato.getCategoriaPlato());
+            ps.setFloat(5, plato.getPrecio());
+            ps.setBoolean(6, plato.isEstadoPlato());
+            ps.setString(7, plato.getImagenReferencia());
+            ps.setInt(8, plato.getIdPlato());
+            ok = ps.executeUpdate() > 0;
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            CNX.desconectar();
         }
-        return null;
+        return ok;
     }
-    
-    public Plato buscarPorCodigo(String codigo) {
-        for (Plato plato : platos) {
-            if (plato.getCodigo().equals(codigo)) {
-                return plato;
-            }
+
+    @Override
+    public boolean eliminar(Plato plato) {
+        boolean ok = false;
+        try {
+            ps = CNX.conectar().prepareStatement("DELETE FROM Platos WHERE idPlato=?");
+            ps.setInt(1, plato.getIdPlato());
+            ok = ps.executeUpdate() > 0;
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            CNX.desconectar();
         }
-        return null;
-    }
-    
-    public List<Plato> buscarPorCategoria(String categoria) {
-        List<Plato> resultado = new ArrayList<>();
-        for (Plato plato : platos) {
-            if (plato.getCategoriaPlato().equalsIgnoreCase(categoria) && plato.isEstadoPlato()) {
-                resultado.add(plato);
-            }
-        }
-        return resultado;
-    }
-    
-    public List<Plato> buscarPorNombre(String nombre) {
-        List<Plato> resultado = new ArrayList<>();
-        for (Plato plato : platos) {
-            if (plato.getNombre().toLowerCase().contains(nombre.toLowerCase()) && plato.isEstadoPlato()) {
-                resultado.add(plato);
-            }
-        }
-        return resultado;
+        return ok;
     }
 }

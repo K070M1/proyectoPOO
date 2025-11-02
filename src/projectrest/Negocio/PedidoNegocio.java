@@ -4,10 +4,30 @@
  */
 package projectrest.Negocio;
 
-/**
- *
- * @author Rafael
- */
+import java.util.List;
+import java.util.ArrayList;
+import projectrest.Datos.PedidoDAO;
+import projectrest.Entidades.Pedido;
+import javax.swing.table.DefaultTableModel;
+
 public class PedidoNegocio {
-    
+
+    private final PedidoDAO DATOS;
+    private DefaultTableModel dtm;
+
+    public PedidoNegocio() {
+        this.DATOS = new PedidoDAO();
+    }
+
+    public String insertar(Pedido pedido) {
+        return DATOS.insertar(pedido) ? "OK" : "Error en la inserción";
+    }
+
+    public String editar(Pedido pedido) {
+        return DATOS.editar(pedido) ? "OK" : "Error en la inserción";
+    }
+
+    public String eliminar(int idPedido) {
+        return DATOS.eliminar(idPedido) ? "OK" : "Error en la inserción";
+    }
 }

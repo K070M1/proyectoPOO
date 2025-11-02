@@ -1,54 +1,116 @@
 package projectrest.Datos;
 
-import projectrest.Entidades.DetallePedido;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import projectrest.Conexion.Conexion;
+import projectrest.Datos.Interfaces.IDetallePedido;
+import projectrest.Entidades.DetallePedido;
 
-public class DetallePedidoDAO {
-    private List<DetallePedido> detalles = new ArrayList<>();
-    private int nextId = 1;
-    
+public class DetallePedidoDAO implements IDetallePedido {
+
+    private final Conexion CNX;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
     public DetallePedidoDAO() {
-        detalles.add(new DetallePedido(1, 1, 1, 2, 0));
+        this.CNX = Conexion.getInstancia();
     }
-    
-    public List<DetallePedido> listarTodos() {
-        return new ArrayList<>(detalles);
+
+    @Override
+    public List<DetallePedido> listar(String texto) {
+        List<DetallePedido> registros = new ArrayList<>();
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "SELECT idDetalle, idPedido, idPlato, cantidad, descuento "
+                    + "FROM DetallePedidos WHERE idPedido LIKE ? ORDER BY idDetalle DESC"
+            );
+            ps.setString(1, "%" + texto + "%");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                registros.add(new DetallePedido(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getFloat(5)
+                ));
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            rs = null;
+            CNX.desconectar();
+        }
+        return registros;
     }
-    
+
+    @Override
     public boolean insertar(DetallePedido detalle) {
-        detalle.setIdDetalle(nextId++);
-        return detalles.add(detalle);
-    }
-    
-    public List<DetallePedido> buscarPorPedido(int idPedido) {
-        List<DetallePedido> resultado = new ArrayList<>();
-        for (DetallePedido detalle : detalles) {
-            if (detalle.getIdPedido() == idPedido) {
-                resultado.add(detalle);
-            }
+        boolean ok = false;
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "INSERT INTO DetallePedidos (idPedido, idPlato, cantidad, descuento) VALUES (?,?,?,?)"
+            );
+            ps.setInt(1, detalle.getIdPedido());
+            ps.setInt(2, detalle.getIdPlato());
+            ps.setInt(3, detalle.getCantidad());
+            ps.setFloat(4, detalle.getDescuento());
+            ok = ps.executeUpdate() > 0;
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            CNX.desconectar();
         }
-        return resultado;
+        return ok;
     }
-    
-    public boolean eliminarPorPedido(int idPedido) {
-        return detalles.removeIf(detalle -> detalle.getIdPedido() == idPedido);
-    }
-    
-    public double calcularSubtotalPedido(int idPedido) {
-        double subtotal = 0;
-        PlatoDAO platoDAO = new PlatoDAO();
-        
-        for (DetallePedido detalle : detalles) {
-            if (detalle.getIdPedido() == idPedido) {
-                var plato = platoDAO.buscarPorId(detalle.getIdPlato());
-                if (plato != null) {
-                    double precio = plato.getPrecio() * detalle.getCantidad();
-                    double descuento = precio * (detalle.getDescuento() / 100);
-                    subtotal += precio - descuento;
-                }
-            }
+
+    @Override
+    public boolean editar(DetallePedido detalle) {
+        boolean ok = false;
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "UPDATE DetallePedidos SET idPedido=?, idPlato=?, cantidad=?, descuento=? WHERE idDetalle=?"
+            );
+            ps.setInt(1, detalle.getIdPedido());
+            ps.setInt(2, detalle.getIdPlato());
+            ps.setInt(3, detalle.getCantidad());
+            ps.setFloat(4, detalle.getDescuento());
+            ps.setInt(5, detalle.getIdDetalle());
+            ok = ps.executeUpdate() > 0;
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            CNX.desconectar();
         }
-        return subtotal;
+        return ok;
+    }
+
+    @Override
+    public boolean eliminar(DetallePedido detalle) {
+        boolean ok = false;
+        try {
+            ps = CNX.conectar().prepareStatement("DELETE FROM DetallePedidos WHERE idDetalle=?");
+            ps.setInt(1, detalle.getIdDetalle());
+            ok = ps.executeUpdate() > 0;
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            CNX.desconectar();
+        }
+        return ok;
     }
 }

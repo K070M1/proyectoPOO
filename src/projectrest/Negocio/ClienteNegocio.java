@@ -30,11 +30,10 @@ public class ClienteNegocio {
         String[] columnas = {"ID", "Nombres", "Categoria", "Correo", "Telefono"};
         this.dtm = new DefaultTableModel(null, columnas);
         String[] registro = new String[5];
-        String estado;
         for (Cliente item : lista) {
             registro[0] = Integer.toString(item.getIdCliente());
             registro[1] = item.getNombreCompleto();
-            registro[2] = item.getCategoriaCliente();
+            registro[2] = item.getCategoriaCliente().equals("V") ? "VIP": "Regular";
             registro[3] = item.getCorreo();
             registro[4] = item.getTelefono();
 

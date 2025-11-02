@@ -26,7 +26,7 @@ public class PlatoDAO implements IPlato {
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT idPlato, codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia "
-                    + "FROM Platos WHERE nombre LIKE ? OR codigo LIKE ? OR categoriaPlato LIKE ? ORDER BY idPlato DESC"
+                    + "FROM Plato WHERE nombre LIKE ? OR codigo LIKE ? OR categoriaPlato LIKE ? ORDER BY idPlato DESC"
             );
             ps.setString(1, "%" + texto + "%");
             ps.setString(2, "%" + texto + "%");

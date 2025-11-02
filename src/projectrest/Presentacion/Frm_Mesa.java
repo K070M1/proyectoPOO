@@ -4,6 +4,7 @@
  */
 package projectrest.Presentacion;
 
+import javax.swing.JOptionPane;
 import projectrest.Negocio.MesaNegocio;
 import projectrest.Entidades.Mesa;
 
@@ -17,6 +18,7 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
     private String action;
     private Mesa mesa;
     private String resp;
+    private int idRow;
 
     /**
      * Creates new form Frm_Mesa
@@ -34,11 +36,20 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
         TblMesa.setModel(this.CONTROL.listar(texto));
     }
 
-    private void limpiar() {
+    private void limpiar(int nro) {
         this.TxtBuscar.setText("");
         this.TxtNro.setText("");
         this.TxtMaximo.setText("");
         this.action = "guardar";
+        this.idRow = -1;
+
+        this.changesTabbs(nro);
+    }
+
+    private void changesTabbs(int nro) {
+        TabMesa.setEnabledAt(nro, true);
+        TabMesa.setEnabledAt(nro == 0 ? 1 : 0, false);
+        TabMesa.setSelectedIndex(nro);
     }
 
     /**
@@ -57,11 +68,16 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
         BtnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblMesa = new javax.swing.JTable();
+        BtnNuevo = new javax.swing.JButton();
+        BtnEditar = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         LblNro = new javax.swing.JLabel();
         TxtNro = new javax.swing.JTextField();
         LblMaximo = new javax.swing.JLabel();
         TxtMaximo = new javax.swing.JTextField();
+        BtnGuardar = new javax.swing.JButton();
+        BtnCerrar = new javax.swing.JButton();
 
         LblBuscar.setText("Buscar:");
 
@@ -82,6 +98,27 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(TblMesa);
 
+        BtnNuevo.setText("Nuevo");
+        BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNuevoActionPerformed(evt);
+            }
+        });
+
+        BtnEditar.setText("Editar");
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarActionPerformed(evt);
+            }
+        });
+
+        BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,8 +130,14 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
                 .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnBuscar)
-                .addContainerGap(457, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnNuevo)
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +146,10 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblBuscar)
                     .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscar))
+                    .addComponent(BtnBuscar)
+                    .addComponent(BtnNuevo)
+                    .addComponent(BtnEditar)
+                    .addComponent(BtnEliminar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -121,6 +167,20 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
             }
         });
 
+        BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
+
+        BtnCerrar.setText("Cerrar");
+        BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -129,14 +189,21 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(LblMaximo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addComponent(TxtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BtnGuardar)
+                        .addGap(32, 32, 32)
+                        .addComponent(BtnCerrar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(LblNro)
-                        .addGap(66, 66, 66)
-                        .addComponent(TxtNro)))
-                .addGap(385, 385, 385))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(LblMaximo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                .addComponent(TxtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(LblNro)
+                                .addGap(66, 66, 66)
+                                .addComponent(TxtNro)))
+                        .addGap(385, 385, 385))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +216,11 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblMaximo)
                     .addComponent(TxtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addGap(105, 105, 105)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnGuardar)
+                    .addComponent(BtnCerrar))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         TabMesa.addTab("Formulario", jPanel2);
@@ -181,9 +252,99 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
         this.listar(this.TxtBuscar.getText());
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
+    private void BtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoActionPerformed
+        this.limpiar(1);
+    }//GEN-LAST:event_BtnNuevoActionPerformed
+
+    private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
+        this.limpiar(0);
+    }//GEN-LAST:event_BtnCerrarActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        mesa = new Mesa();
+        mesa.setMaximoClientes(Integer.parseInt(TxtMaximo.getText()));
+        mesa.setNroMesa(TxtNro.getText());
+
+        String title_s = this.action.equals("guardar") ? "Nuevo registro" : "Edición del registro";
+
+        if (this.action.equals("editar") && idRow == -1) {
+            JOptionPane.showMessageDialog(null, "No hay un ID válido", title_s, JOptionPane.WARNING_MESSAGE);
+        } else {
+            mesa.setIdMesa(idRow);
+        }
+
+        int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de guardar los cambios?", title_s, JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            resp = this.action.equals("guardar") ? this.CONTROL.insertar(mesa) : this.CONTROL.editar(mesa);
+            if (resp.equals("OK")) {
+                JOptionPane.showMessageDialog(null, "Registro guardado correctamente", title_s, JOptionPane.INFORMATION_MESSAGE);
+                this.limpiar(0);
+                this.listar("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", title_s, JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
+        if (TblMesa.getSelectedRowCount() == 1) {
+            // ID
+            String id = String.valueOf(TblMesa.getValueAt(TblMesa.getSelectedRow(), 0));
+
+            // OTROS CAMPOS
+            String nro = String.valueOf(TblMesa.getValueAt(TblMesa.getSelectedRow(), 1));
+            String maximo = String.valueOf(TblMesa.getValueAt(TblMesa.getSelectedRow(), 2));
+
+            // TEXTFIELDS
+            this.TxtNro.setText(nro);
+            this.TxtMaximo.setText(maximo);
+
+            changesTabbs(1);
+            this.action = "editar";
+            this.idRow = Integer.parseInt(id);
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un registro de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEditarActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        if (TblMesa.getSelectedRowCount() == 1) {
+
+            // ID
+            String id = String.valueOf(TblMesa.getValueAt(TblMesa.getSelectedRow(), 0));
+
+            // OTROS CAMPOS
+            String nro = String.valueOf(TblMesa.getValueAt(TblMesa.getSelectedRow(), 1));
+            String maximo = String.valueOf(TblMesa.getValueAt(TblMesa.getSelectedRow(), 2));
+
+            Mesa reg = new Mesa(Integer.parseInt(id), nro, Integer.parseInt(maximo));
+
+            // --> PROCESO COMUN Y PRACTICAMENTE INMUTABLE (PUEDES DEJARLO ASI)
+            int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar este registro?", "Quitar registro", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                resp = this.CONTROL.eliminar(reg);
+                if (resp.equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Quitar registro", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiar(0);
+                    this.listar("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", "Quitar registro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un registro de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnCerrar;
+    private javax.swing.JButton BtnEditar;
+    private javax.swing.JButton BtnEliminar;
+    private javax.swing.JButton BtnGuardar;
+    private javax.swing.JButton BtnNuevo;
     private javax.swing.JLabel LblBuscar;
     private javax.swing.JLabel LblMaximo;
     private javax.swing.JLabel LblNro;

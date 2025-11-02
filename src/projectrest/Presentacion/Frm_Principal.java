@@ -4,17 +4,34 @@
  */
 package projectrest.Presentacion;
 
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author Rafael
  */
 public class Frm_Principal extends javax.swing.JFrame {
 
+    private JInternalFrame main_frame;
+
     /**
      * Creates new form Frm_Principal
      */
     public Frm_Principal() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+        this.main_frame = null;
+    }
+
+    // Vista SINGLETON
+    public void visibleFrame(JInternalFrame frm) {
+        if (this.main_frame != null) {
+            this.main_frame.setVisible(false);
+            Principal.remove(this.main_frame);
+        }
+        this.main_frame = frm;
+        Principal.add(frm);
+        frm.setVisible(true);
     }
 
     /**
@@ -43,9 +60,14 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        menuBar.setMaximumSize(new java.awt.Dimension(379, 32768));
+        menuBar.setMinimumSize(new java.awt.Dimension(379, 39));
+        menuBar.setPreferredSize(new java.awt.Dimension(379, 39));
+
         jMenu1.setText("Maestros");
 
         MenMesas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MenMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Mesa.png"))); // NOI18N
         MenMesas.setText("Mesas");
         MenMesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,11 +77,23 @@ public class Frm_Principal extends javax.swing.JFrame {
         jMenu1.add(MenMesas);
 
         MenPlatos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MenPlatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Plato.png"))); // NOI18N
         MenPlatos.setText("Platos");
+        MenPlatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenPlatosActionPerformed(evt);
+            }
+        });
         jMenu1.add(MenPlatos);
 
         MenClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MenClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Cliente.jpg"))); // NOI18N
         MenClientes.setText("Clientes");
+        MenClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenClientesActionPerformed(evt);
+            }
+        });
         jMenu1.add(MenClientes);
 
         MenEmpleados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -76,10 +110,12 @@ public class Frm_Principal extends javax.swing.JFrame {
         MenPedidos.setText("Pedidos");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Pedido.png"))); // NOI18N
         jMenuItem1.setText("Módulo de Pedidos");
         MenPedidos.add(jMenuItem1);
 
         MenComprobantes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MenComprobantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Comprobante.png"))); // NOI18N
         MenComprobantes.setText("Módulo de Comprobantes");
         MenPedidos.add(MenComprobantes);
 
@@ -88,6 +124,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jMenu3.setText("Calificaciones");
 
         MenCalificacion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MenCalificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Calificacion.png"))); // NOI18N
         MenCalificacion.setText("Módulo de Calificación");
         jMenu3.add(MenCalificacion);
 
@@ -113,13 +150,13 @@ public class Frm_Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -127,7 +164,8 @@ public class Frm_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenEmpleadosActionPerformed
-        // TODO add your handling code here:
+        Frm_Empleado frm = new Frm_Empleado();
+        this.visibleFrame(frm);
     }//GEN-LAST:event_MenEmpleadosActionPerformed
 
     private void MenSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenSalirActionPerformed
@@ -136,9 +174,18 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void MenMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenMesasActionPerformed
         Frm_Mesa frm = new Frm_Mesa();
-        Principal.add(frm);
-        frm.setVisible(true);
+        this.visibleFrame(frm);
     }//GEN-LAST:event_MenMesasActionPerformed
+
+    private void MenClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenClientesActionPerformed
+        Frm_Cliente frm = new Frm_Cliente();
+        this.visibleFrame(frm);
+    }//GEN-LAST:event_MenClientesActionPerformed
+
+    private void MenPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenPlatosActionPerformed
+        Frm_Plato frm = new Frm_Plato();
+        this.visibleFrame(frm);
+    }//GEN-LAST:event_MenPlatosActionPerformed
 
     /**
      * @param args the command line arguments

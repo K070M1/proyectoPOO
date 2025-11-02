@@ -26,7 +26,7 @@ public class EmpleadoDAO implements IEmpleado{
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT idEmpleado, nombreCompleto, rol, tipoDocumento, documento, usuario, clave, turno, estado, fechaIngreso, fechaSalida "
-                    + "FROM Empleados WHERE nombreCompleto LIKE ? OR usuario LIKE ? ORDER BY idEmpleado DESC"
+                    + "FROM Empleado WHERE nombreCompleto LIKE ? OR usuario LIKE ? ORDER BY idEmpleado DESC"
             );
             ps.setString(1, "%" + texto + "%");
             ps.setString(2, "%" + texto + "%");

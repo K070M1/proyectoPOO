@@ -60,10 +60,12 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuBar.setMaximumSize(new java.awt.Dimension(379, 32768));
         menuBar.setMinimumSize(new java.awt.Dimension(379, 39));
         menuBar.setPreferredSize(new java.awt.Dimension(379, 39));
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Maestro.png"))); // NOI18N
         jMenu1.setText("Maestros");
 
         MenMesas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -97,6 +99,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jMenu1.add(MenClientes);
 
         MenEmpleados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MenEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Empleados.png"))); // NOI18N
         MenEmpleados.setText("Empleados");
         MenEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +110,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         menuBar.add(jMenu1);
 
+        MenPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Venta.png"))); // NOI18N
         MenPedidos.setText("Pedidos");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -121,6 +125,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         menuBar.add(MenPedidos);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Calificaciones.png"))); // NOI18N
         jMenu3.setText("Calificaciones");
 
         MenCalificacion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -130,9 +135,11 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         menuBar.add(jMenu3);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Cerrar.png"))); // NOI18N
         jMenu4.setText("Cerrar");
 
         MenSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MenSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Salir.png"))); // NOI18N
         MenSalir.setText("Salir del Sistema");
         MenSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,14 +157,12 @@ public class Frm_Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
         );
 
         pack();

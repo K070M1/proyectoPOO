@@ -13,7 +13,7 @@ import projectrest.Entidades.Mesa;
  * @author Rafael
  */
 public class Frm_Mesa extends javax.swing.JInternalFrame {
-
+    private int idUsuario;
     private final MesaNegocio CONTROL;
     private String action;
     private Mesa mesa;
@@ -78,6 +78,10 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
         TxtMaximo = new javax.swing.JTextField();
         BtnGuardar = new javax.swing.JButton();
         BtnCerrar = new javax.swing.JButton();
+
+        setClosable(true);
+        setTitle("Mantenimiento de Mesas");
+        setToolTipText("");
 
         LblBuscar.setText("Buscar:");
 

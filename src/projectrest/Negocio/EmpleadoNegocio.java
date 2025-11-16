@@ -6,6 +6,9 @@ package projectrest.Negocio;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import projectrest.Datos.EmpleadoDAO;
 import projectrest.Entidades.Empleado;
 import javax.swing.table.DefaultTableModel;
@@ -25,14 +28,26 @@ public class EmpleadoNegocio {
         String[] columnas = {"ID", "Nombre Completo", "Rol", "Tipo Doc", "Documento", "Usuario", "Turno", "Estado", "Ingreso", "Salida"};
         this.dtm = new DefaultTableModel(null, columnas);
         String[] reg = new String[10];
+        String turn = "";
         for (Empleado e : lista) {
+            switch (e.getTurno()) {
+                case "M":
+                    turn = "Mañana";
+                    break;
+                case "T":
+                    turn = "Tarde";
+                    break;
+                default:
+                    turn = "Noche";
+            }
+
             reg[0] = Integer.toString(e.getIdEmpleado());
             reg[1] = e.getNombreCompleto();
-            reg[2] = e.getRol();
-            reg[3] = e.getTipoDocumento();
+            reg[2] = e.getRol().equals("A") ? "Administrador" : "Empleado";
+            reg[3] = e.getTipoDocumento().equals("D") ? "DNI" : "CE";
             reg[4] = e.getDocumento();
             reg[5] = e.getUsuario();
-            reg[6] = e.getTurno();
+            reg[6] = turn;
             reg[7] = e.isEstado() ? "Activo" : "Inactivo";
             reg[8] = e.getFechaIngreso();
             reg[9] = e.getFechaSalida();
@@ -49,7 +64,33 @@ public class EmpleadoNegocio {
         return DATOS.editar(empleado) ? "OK" : "Error en la inserción";
     }
 
+    public String editarCredenciales(Empleado empleado) {
+        return DATOS.editarCredenciales(empleado) ? "OK" : "Error en la inserción";
+    }
+
     public String eliminar(Empleado empleado) {
         return DATOS.eliminar(empleado) ? "OK" : "Error en la inserción";
+    }
+
+    public DefaultComboBoxModel seleccionarRol() {
+        DefaultComboBoxModel items = new DefaultComboBoxModel();
+        items.addElement("Empleado");
+        items.addElement("Administrador");
+        return items;
+    }
+
+    public DefaultComboBoxModel seleccionarTDocumento() {
+        DefaultComboBoxModel items = new DefaultComboBoxModel();
+        items.addElement("DNI");
+        items.addElement("CE");
+        return items;
+    }
+
+    public DefaultComboBoxModel seleccionarTurno() {
+        DefaultComboBoxModel items = new DefaultComboBoxModel();
+        items.addElement("Mañana");
+        items.addElement("Tarde");
+        items.addElement("Noche");
+        return items;
     }
 }

@@ -4,7 +4,9 @@
  */
 package projectrest.Presentacion;
 
+import javax.swing.JOptionPane;
 import projectrest.Negocio.PlatoNegocio;
+import projectrest.Entidades.Plato;
 
 /**
  *
@@ -12,19 +14,27 @@ import projectrest.Negocio.PlatoNegocio;
  */
 public class Frm_Plato extends javax.swing.JInternalFrame {
 
-    private final PlatoNegocio CONTROL;
+     private final PlatoNegocio CONTROL;
+    private String action;  
+    private Plato plato;  
+    private String resp;   
+    private int idRow;    
     
     public Frm_Plato() {
-        initComponents();
+       initComponents();
         this.CONTROL = new PlatoNegocio();
-        this.listar("");
-        TabPlato.setEnabledAt(0, true);
-        TabPlato.setEnabledAt(1, false);
-        TabPlato.setSelectedIndex(0);
+        this.listar("");  // Listar todos los platos inicialmente
+        TabPlato.setEnabledAt(0, true);  // Solo dejamos la pestaña activa
     }
     
     private void listar(String texto){
         TblPlato.setModel(this.CONTROL.listar(texto));
+    }
+    
+      private void limpiar(){
+         TxtBuscar.setText("");
+        action = "guardar";
+        idRow = -1;
     }
 
     /**
@@ -37,17 +47,26 @@ public class Frm_Plato extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         TabPlato = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblPlato = new javax.swing.JTable();
         LblBuscar = new javax.swing.JLabel();
         TxtBuscar = new javax.swing.JTextField();
         BtnBuscar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        BtnEliminar = new javax.swing.JButton();
+        BtnEditar = new javax.swing.JButton();
+        BtnNuevo = new javax.swing.JButton();
+
+        setClosable(true);
+        setTitle("Modulo de Platillos");
+        setToolTipText("");
 
         TblPlato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
 
@@ -57,55 +76,76 @@ public class Frm_Plato extends javax.swing.JInternalFrame {
 
         LblBuscar.setText("Buscar:");
 
-        BtnBuscar.setText("Buscar");
-        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        TxtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarActionPerformed(evt);
+                TxtBuscarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        BtnBuscar.setText("Buscar");
+
+        BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
+        BtnEditar.setText("Editar");
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarActionPerformed(evt);
+            }
+        });
+
+        BtnNuevo.setText("Nuevo");
+        BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNuevoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
                         .addComponent(LblBuscar)
-                        .addGap(18, 18, 18)
-                        .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnEliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnNuevo)))
+                .addGap(31, 31, 31))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblBuscar)
                     .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE))
+                    .addComponent(BtnBuscar)
+                    .addComponent(BtnEliminar)
+                    .addComponent(BtnEditar)
+                    .addComponent(BtnNuevo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
-        TabPlato.addTab("Listado", jPanel1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 867, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
-        );
-
-        TabPlato.addTab("Formulario", jPanel2);
+        TabPlato.addTab("Platillos", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,19 +167,57 @@ public class Frm_Plato extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        this.listar(this.TxtBuscar.getText());
-    }//GEN-LAST:event_BtnBuscarActionPerformed
+    private void TxtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBuscarActionPerformed
+        this.listar(TxtBuscar.getText());
+    }//GEN-LAST:event_TxtBuscarActionPerformed
 
+    private void BtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoActionPerformed
+       JOptionPane.showMessageDialog(this, "Nuevo Plato");
+    }//GEN-LAST:event_BtnNuevoActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+      if (TblPlato.getSelectedRowCount() == 1) {
+            // Elimina el plato seleccionado de la tabla
+            String id = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 0));
+            Plato reg = new Plato();
+            reg.setIdPlato(Integer.parseInt(id));
+            int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar este plato?", "Eliminar plato", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                resp = this.CONTROL.eliminar(reg);
+                if (resp.equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Plato eliminado", "Eliminar plato", JOptionPane.INFORMATION_MESSAGE);
+                    this.listar("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", "Eliminar plato", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un plato de la tabla!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
+         if (TblPlato.getSelectedRowCount() == 1) {
+            // Editar el plato seleccionado
+            String id = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 0));
+            JOptionPane.showMessageDialog(this, "Editar Plato con ID: " + id);
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un plato de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }   
+    }//GEN-LAST:event_BtnEditarActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnEditar;
+    private javax.swing.JButton BtnEliminar;
+    private javax.swing.JButton BtnNuevo;
     private javax.swing.JLabel LblBuscar;
     private javax.swing.JTabbedPane TabPlato;
     private javax.swing.JTable TblPlato;
     private javax.swing.JTextField TxtBuscar;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

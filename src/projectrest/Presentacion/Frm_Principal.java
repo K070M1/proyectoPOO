@@ -21,6 +21,20 @@ public class Frm_Principal extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         this.main_frame = null;
+
+        // Cargar el login
+        this.loadLogin();
+    }
+
+    public void loadLogin() {
+        Frm_Login frm = new Frm_Login();
+        this.visibleFrame(frm);
+    }
+
+    public void centerInternalFrame(JInternalFrame internalFrame) {
+        int x = (Principal.getWidth() - internalFrame.getWidth()) / 2;
+        int y = (Principal.getHeight() - internalFrame.getHeight()) / 2;
+        internalFrame.setLocation(x, y);
     }
 
     // Vista SINGLETON
@@ -32,6 +46,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         this.main_frame = frm;
         Principal.add(frm);
         frm.setVisible(true);
+        this.centerInternalFrame(frm);
     }
 
     /**

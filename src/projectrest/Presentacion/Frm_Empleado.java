@@ -4,7 +4,10 @@
  */
 package projectrest.Presentacion;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import projectrest.Negocio.EmpleadoNegocio;
+import projectrest.Entidades.Empleado;
 
 /**
  *
@@ -13,18 +16,65 @@ import projectrest.Negocio.EmpleadoNegocio;
 public class Frm_Empleado extends javax.swing.JInternalFrame {
 
     private final EmpleadoNegocio CONTROL;
+    private String action;
+    private Empleado empleado;
+    private String resp;
+    private int idRow;
 
     public Frm_Empleado() {
         initComponents();
         this.CONTROL = new EmpleadoNegocio();
         this.listar("");
+        this.cargarRol();
+        this.cargarTDocumento();
+        this.cargarTurno();
         TabEmpleado.setEnabledAt(0, true);
         TabEmpleado.setEnabledAt(1, false);
+        TabEmpleado.setEnabledAt(2, false);
         TabEmpleado.setSelectedIndex(0);
     }
 
     private void listar(String texto) {
         TblEmpleado.setModel(this.CONTROL.listar(texto));
+    }
+
+    // --> LISTADOS
+    private void cargarRol() {
+        DefaultComboBoxModel items = this.CONTROL.seleccionarRol();
+        CbRol.setModel(items);
+    }
+
+    private void cargarTDocumento() {
+        DefaultComboBoxModel items = this.CONTROL.seleccionarTDocumento();
+        CbTipo.setModel(items);
+    }
+
+    private void cargarTurno() {
+        DefaultComboBoxModel items = this.CONTROL.seleccionarTurno();
+        CbTurno.setModel(items);
+    }
+
+    private void limpiar(int nro) {
+        this.TxtBuscar.setText("");
+        this.TxtNombre.setText("");
+        this.TxtDocumento.setText("");
+        this.TxtUsuario.setText("");
+        this.TxtClave.setText("");
+        this.CbRol.setSelectedIndex(0);
+        this.CbTipo.setSelectedIndex(0);
+        this.CbTurno.setSelectedIndex(0);
+        this.ChkEstado.setSelected(false);
+        this.action = "guardar";
+        this.idRow = -1;
+
+        this.changesTabbs(nro);
+    }
+
+    private void changesTabbs(int nro) {
+        for (int i = 0; i < 3; i++) {
+            TabEmpleado.setEnabledAt(i, nro == i);
+        }
+        TabEmpleado.setSelectedIndex(nro);
     }
 
     /**
@@ -36,6 +86,7 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         TabEmpleado = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -43,7 +94,35 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
         LblBuscar = new javax.swing.JLabel();
         TxtBuscar = new javax.swing.JTextField();
         BtnBuscar = new javax.swing.JButton();
+        BtnNuevo = new javax.swing.JButton();
+        BtnEditar = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
+        BtnCredencials = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        TxtNombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        CbRol = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        CbTipo = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        TxtDocumento = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        CbTurno = new javax.swing.JComboBox<>();
+        ChkEstado = new javax.swing.JCheckBox();
+        BtnCancelar = new javax.swing.JButton();
+        BtnGuardar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        TxtUsuario = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        BtnCancelarC = new javax.swing.JButton();
+        BtnGuardarC = new javax.swing.JButton();
+        TxtClave = new javax.swing.JPasswordField();
+
+        jFormattedTextField1.setText("jFormattedTextField1");
+
+        setTitle("Mantenimiento de Empleados");
 
         TblEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,6 +143,34 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
             }
         });
 
+        BtnNuevo.setText("Nuevo");
+        BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNuevoActionPerformed(evt);
+            }
+        });
+
+        BtnEditar.setText("Editar");
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarActionPerformed(evt);
+            }
+        });
+
+        BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
+        BtnCredencials.setText("Credenciales");
+        BtnCredencials.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCredencialsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -78,7 +185,14 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
                         .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BtnBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnCredencials)
+                        .addGap(33, 33, 33)
+                        .addComponent(BtnEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnNuevo)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,7 +202,11 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblBuscar)
                     .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscar))
+                    .addComponent(BtnBuscar)
+                    .addComponent(BtnNuevo)
+                    .addComponent(BtnEditar)
+                    .addComponent(BtnEliminar)
+                    .addComponent(BtnCredencials))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                 .addContainerGap())
@@ -96,18 +214,157 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
 
         TabEmpleado.addTab("Listado", jPanel1);
 
+        jLabel1.setText("Nombre completo:");
+
+        jLabel2.setText("Rol:");
+
+        CbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel3.setText("Tipo de documento:");
+
+        CbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel4.setText("Documento:");
+
+        jLabel5.setText("Turno:");
+
+        CbTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        ChkEstado.setText("Se encuentra Activo");
+
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
+
+        BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 862, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ChkEstado)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(BtnCancelar))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnGuardar))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(CbTurno, javax.swing.GroupLayout.Alignment.LEADING, 0, 179, Short.MAX_VALUE)
+                                        .addComponent(TxtDocumento, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CbTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(CbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addContainerGap(360, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(CbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(CbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(TxtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(CbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(111, 111, 111)
+                .addComponent(ChkEstado)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnCancelar)
+                    .addComponent(BtnGuardar))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         TabEmpleado.addTab("Formulario", jPanel2);
+
+        jLabel6.setText("Usuario:");
+
+        jLabel7.setText("Nueva clave:");
+
+        BtnCancelarC.setText("Cancelar");
+        BtnCancelarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarCActionPerformed(evt);
+            }
+        });
+
+        BtnGuardarC.setText("Guardar credenciales");
+        BtnGuardarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarCActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(BtnCancelarC))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnGuardarC)
+                    .addComponent(TxtUsuario)
+                    .addComponent(TxtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                .addContainerGap(531, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(TxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(117, 117, 117)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnCancelarC)
+                    .addComponent(BtnGuardarC))
+                .addContainerGap(315, Short.MAX_VALUE))
+        );
+
+        TabEmpleado.addTab("Credenciales", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,19 +386,201 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        if (TblEmpleado.getSelectedRowCount() == 1) {
+
+            // ID
+            String id = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 0));
+
+            Empleado reg = new Empleado(Integer.parseInt(id));
+
+            // --> PROCESO COMUN Y PRACTICAMENTE INMUTABLE (PUEDES DEJARLO ASI)
+            int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar este registro?", "Quitar registro", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                resp = this.CONTROL.eliminar(reg);
+                if (resp.equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Quitar registro", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiar(0);
+                    this.listar("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", "Quitar registro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un registro de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         this.listar(this.TxtBuscar.getText());
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
+    private void BtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoActionPerformed
+        this.limpiar(1);
+    }//GEN-LAST:event_BtnNuevoActionPerformed
+
+    private void BtnCredencialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCredencialsActionPerformed
+        if (TblEmpleado.getSelectedRowCount() == 1) {
+            // ID
+            String id = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 0));
+
+            // OTROS CAMPOS
+            String usuario = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 5));
+
+            // TEXTFIELDS
+            this.TxtUsuario.setText(usuario.equals("null") ? "" : usuario);
+            this.TxtClave.setText("");
+
+            changesTabbs(2);
+            this.action = "editar";
+            this.idRow = Integer.parseInt(id);
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un registro de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnCredencialsActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        this.limpiar(0);
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void BtnCancelarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarCActionPerformed
+        this.limpiar(0);
+    }//GEN-LAST:event_BtnCancelarCActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        empleado = new Empleado();
+        String rol = CbRol.getSelectedItem().toString();
+        String tdoc = CbTipo.getSelectedItem().toString();
+        String turno = CbTurno.getSelectedItem().toString();
+
+        empleado.setNombreCompleto(TxtNombre.getText());
+        empleado.setDocumento(TxtDocumento.getText());
+        empleado.setEstado(ChkEstado.isSelected());
+        empleado.setRol(rol.substring(0, 1));
+        empleado.setTipoDocumento(tdoc.substring(0, 1));
+        empleado.setTurno(turno.substring(0, 1));
+
+        String title_s = this.action.equals("guardar") ? "Nuevo registro" : "Edición del registro";
+
+        if (this.action.equals("editar") && idRow == -1) {
+            JOptionPane.showMessageDialog(null, "No hay un ID válido", title_s, JOptionPane.WARNING_MESSAGE);
+        } else {
+            empleado.setIdEmpleado(idRow);
+        }
+
+        int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de guardar los cambios?", title_s, JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            resp = this.action.equals("guardar") ? this.CONTROL.insertar(empleado) : this.CONTROL.editar(empleado);
+            if (resp.equals("OK")) {
+                JOptionPane.showMessageDialog(null, "Registro guardado correctamente", title_s, JOptionPane.INFORMATION_MESSAGE);
+                this.limpiar(0);
+                this.listar("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", title_s, JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
+        if (TblEmpleado.getSelectedRowCount() == 1) {
+            // ID
+            String id = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 0));
+
+            // OTROS CAMPOS
+            String nombre = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 1));
+            String rol = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 2));
+            String tdoc = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 3));
+            String doc = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 4));
+            String turno = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 6));
+            String estado = String.valueOf(TblEmpleado.getValueAt(TblEmpleado.getSelectedRow(), 7));
+
+            // TEXTFIELDS
+            this.TxtNombre.setText(nombre);
+            this.TxtDocumento.setText(doc);
+            this.ChkEstado.setSelected(estado == "Activo");
+            this.CbRol.setSelectedItem(rol);
+            this.CbTipo.setSelectedItem(tdoc);
+            this.CbTurno.setSelectedItem(turno);
+
+            changesTabbs(1);
+            this.action = "editar";
+            this.idRow = Integer.parseInt(id);
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un registro de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEditarActionPerformed
+
+    // ===>  Guardado de credenciales
+    private void BtnGuardarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarCActionPerformed
+        empleado = new Empleado();
+
+        empleado.setUsuario(TxtUsuario.getText());
+
+        String clave = new String(TxtClave.getPassword());
+        String title_s = "Asignación de credenciales";
+
+        if (clave.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Necesitas colocar la clave actual o una nueva clave", title_s, JOptionPane.ERROR_MESSAGE);
+        } else {
+            empleado.setClave(clave);
+
+            if (this.action.equals("editar") && idRow == -1) {
+                JOptionPane.showMessageDialog(null, "No hay un ID válido", title_s, JOptionPane.WARNING_MESSAGE);
+            } else {
+                empleado.setIdEmpleado(idRow);
+            }
+
+            int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de guardar estas credenciales?", title_s, JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                resp = this.CONTROL.editarCredenciales(empleado);
+                if (resp.equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Credenciales guardadas correctamente", title_s, JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiar(0);
+                    this.listar("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", title_s, JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        }
+
+    }//GEN-LAST:event_BtnGuardarCActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnCancelarC;
+    private javax.swing.JButton BtnCredencials;
+    private javax.swing.JButton BtnEditar;
+    private javax.swing.JButton BtnEliminar;
+    private javax.swing.JButton BtnGuardar;
+    private javax.swing.JButton BtnGuardarC;
+    private javax.swing.JButton BtnNuevo;
+    private javax.swing.JComboBox<String> CbRol;
+    private javax.swing.JComboBox<String> CbTipo;
+    private javax.swing.JComboBox<String> CbTurno;
+    private javax.swing.JCheckBox ChkEstado;
     private javax.swing.JLabel LblBuscar;
     private javax.swing.JTabbedPane TabEmpleado;
     private javax.swing.JTable TblEmpleado;
     private javax.swing.JTextField TxtBuscar;
+    private javax.swing.JPasswordField TxtClave;
+    private javax.swing.JTextField TxtDocumento;
+    private javax.swing.JTextField TxtNombre;
+    private javax.swing.JTextField TxtUsuario;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

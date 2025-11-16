@@ -25,6 +25,27 @@ public class Empleado {
     public Empleado() {
     }
 
+    public Empleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public Empleado(String usuario, String clave) {
+        this.usuario = usuario;
+        this.clave = clave;
+    }
+
+    public Empleado(int idEmpleado, String nombreCompleto, String rol, String tipoDocumento, String documento, String turno, boolean estado, String fechaIngreso, String fechaSalida) {
+        this.idEmpleado = idEmpleado;
+        this.nombreCompleto = nombreCompleto;
+        this.rol = rol;
+        this.tipoDocumento = tipoDocumento;
+        this.documento = documento;
+        this.turno = turno;
+        this.estado = estado;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
+    }
+
     public Empleado(int idEmpleado, String nombreCompleto, String rol, String tipoDocumento, String documento, String usuario, String clave, String turno, boolean estado, String fechaIngreso, String fechaSalida) {
         this.idEmpleado = idEmpleado;
         this.nombreCompleto = nombreCompleto;

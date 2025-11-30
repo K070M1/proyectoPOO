@@ -4,16 +4,22 @@
  */
 package projectrest.Presentacion;
 
+import javax.swing.JOptionPane;
+import projectrest.Negocio.EmpleadoNegocio;
+
 /**
  *
  * @author Rafael
  */
 public class Frm_Login extends javax.swing.JInternalFrame {
 
+    private final EmpleadoNegocio CONTROL;
+
     /**
      * Creates new form Frm_Login
      */
     public Frm_Login() {
+        this.CONTROL = new EmpleadoNegocio();
         initComponents();
     }
 
@@ -49,6 +55,11 @@ public class Frm_Login extends javax.swing.JInternalFrame {
         });
 
         BtnLogin.setText("Ingresar al Sistema");
+        BtnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLoginActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Usuario:");
 
@@ -105,6 +116,19 @@ public class Frm_Login extends javax.swing.JInternalFrame {
     private void TxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtUsuarioActionPerformed
+
+    private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
+        String usuario = TxtUsuario.getText();
+        String clave = new String(TxtClave.getPassword());
+
+        String msg = this.CONTROL.iniciarSesion(usuario, clave);
+        if (msg.contains("ERROR LOGIN:")) {
+            JOptionPane.showMessageDialog(null, msg, "Inicio de sesión", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, msg, "Inicio de sesión", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_BtnLoginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

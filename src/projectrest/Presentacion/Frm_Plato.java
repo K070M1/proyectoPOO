@@ -56,6 +56,25 @@ public class Frm_Plato extends javax.swing.JInternalFrame {
         BtnEliminar = new javax.swing.JButton();
         BtnEditar = new javax.swing.JButton();
         BtnNuevo = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        LblPlato = new javax.swing.JLabel();
+        LblCodigo = new javax.swing.JLabel();
+        LblNombre = new javax.swing.JLabel();
+        LblDescripcion = new javax.swing.JLabel();
+        LblCategoria = new javax.swing.JLabel();
+        LblPrecio = new javax.swing.JLabel();
+        LblEstado = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        TxtIdplato = new javax.swing.JTextField();
+        TxtNombre = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TxtDescripcion = new javax.swing.JTextArea();
+        TxtCategoria = new javax.swing.JTextField();
+        TxtPrecio = new javax.swing.JTextField();
+        TxtEstado = new javax.swing.JTextField();
+        BtnGuardar = new javax.swing.JButton();
+        BtnCerrar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Modulo de Platillos");
@@ -83,6 +102,11 @@ public class Frm_Plato extends javax.swing.JInternalFrame {
         });
 
         BtnBuscar.setText("Buscar");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
 
         BtnEliminar.setText("Eliminar");
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -140,12 +164,135 @@ public class Frm_Plato extends javax.swing.JInternalFrame {
                     .addComponent(BtnEliminar)
                     .addComponent(BtnEditar)
                     .addComponent(BtnNuevo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         TabPlato.addTab("Platillos", jPanel3);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Agregar nuevo platillo");
+
+        LblPlato.setText("ID_Plato");
+
+        LblCodigo.setText("Codigo");
+
+        LblNombre.setText("Nombre");
+
+        LblDescripcion.setText("Descripcion");
+
+        LblCategoria.setText("Categoria");
+
+        LblPrecio.setText("Precio");
+
+        LblEstado.setText("Estado");
+
+        TxtIdplato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtIdplatoActionPerformed(evt);
+            }
+        });
+
+        TxtDescripcion.setColumns(20);
+        TxtDescripcion.setRows(5);
+        jScrollPane2.setViewportView(TxtDescripcion);
+
+        BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
+
+        BtnCerrar.setText("Cerrar");
+        BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCerrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(LblNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LblPlato)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TxtIdplato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LblCodigo)
+                                .addGap(29, 29, 29)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LblDescripcion)
+                            .addComponent(LblCategoria)
+                            .addComponent(LblPrecio)
+                            .addComponent(LblEstado))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(297, 297, 297)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnCerrar)
+                    .addComponent(BtnGuardar))
+                .addGap(175, 175, 175))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblPlato)
+                    .addComponent(TxtIdplato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(BtnGuardar)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblCodigo)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblNombre)
+                    .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCerrar))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblDescripcion))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblCategoria)
+                    .addComponent(TxtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblPrecio)
+                    .addComponent(TxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LblEstado)
+                    .addComponent(TxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        TabPlato.addTab("Formulario", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,52 +319,132 @@ public class Frm_Plato extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TxtBuscarActionPerformed
 
     private void BtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoActionPerformed
-       JOptionPane.showMessageDialog(this, "Nuevo Plato");
+    limpiar();
+    action = "guardar";
+    TabPlato.setSelectedIndex(1);
     }//GEN-LAST:event_BtnNuevoActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-      if (TblPlato.getSelectedRowCount() == 1) {
-            // Elimina el plato seleccionado de la tabla
-            String id = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 0));
-            Plato reg = new Plato();
-            reg.setIdPlato(Integer.parseInt(id));
-            int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar este plato?", "Eliminar plato", JOptionPane.YES_NO_OPTION);
-            if (res == JOptionPane.YES_OPTION) {
-                resp = this.CONTROL.eliminar(reg);
-                if (resp.equals("OK")) {
-                    JOptionPane.showMessageDialog(null, "Plato eliminado", "Eliminar plato", JOptionPane.INFORMATION_MESSAGE);
-                    this.listar("");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", "Eliminar plato", JOptionPane.ERROR_MESSAGE);
-                }
+       if (TblPlato.getSelectedRowCount() == 1) {
+        String id = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 0));
+        Plato reg = new Plato();
+        reg.setIdPlato(Integer.parseInt(id));
+        int res = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este plato?", "Eliminar plato", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            resp = this.CONTROL.eliminar(reg);
+            if (resp.equals("OK")) {
+                JOptionPane.showMessageDialog(null, "Plato eliminado correctamente", "Eliminar plato", JOptionPane.INFORMATION_MESSAGE);
+                listar("");  // Recargamos la lista de platos
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un plato de la tabla!", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Necesitas seleccionar un plato de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+      }
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
-         if (TblPlato.getSelectedRowCount() == 1) {
-            // Editar el plato seleccionado
-            String id = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 0));
-            JOptionPane.showMessageDialog(this, "Editar Plato con ID: " + id);
-        } else {
-            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un plato de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }   
+       if (TblPlato.getSelectedRowCount() == 1) {
+        String id = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 0));
+        String codigo = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 1));
+        String nombre = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 2));
+        String descripcion = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 3));
+        String categoria = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 4));
+        String precio = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 5));
+        String estado = String.valueOf(TblPlato.getValueAt(TblPlato.getSelectedRow(), 6));
+
+        TxtIdplato.setText(id);
+        txtCodigo.setText(codigo);
+        TxtNombre.setText(nombre);
+        TxtDescripcion.setText(descripcion);
+        TxtCategoria.setText(categoria);
+        TxtPrecio.setText(precio);
+        TxtEstado.setText(estado.equals("Disponible") ? "1" : "0");  // Convertimos estado a "0" o "1"
+
+        action = "editar";
+        TabPlato.setSelectedIndex(1);  
+    } else {
+        JOptionPane.showMessageDialog(null, "Necesitas seleccionar un plato de la tabla.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+      }
     }//GEN-LAST:event_BtnEditarActionPerformed
+
+    private void TxtIdplatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIdplatoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtIdplatoActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+ plato = new Plato();
+    plato.setCodigo(txtCodigo.getText());
+    plato.setNombre(TxtNombre.getText());
+    plato.setDescripcion(TxtDescripcion.getText());
+    plato.setCategoriaPlato(TxtCategoria.getText());
+    plato.setPrecio(Float.parseFloat(TxtPrecio.getText()));
+    plato.setEstadoPlato(!TxtEstado.getText().equals("0")); //  "0" es false y cualquier otro valor es true
+
+    if (action.equals("guardar")) {
+        // Guardamos el plato
+        resp = this.CONTROL.insertar(plato);
+        if (resp.equals("OK")) {
+            JOptionPane.showMessageDialog(null, "Plato guardado correctamente", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else if (action.equals("editar")) {
+        // Editamos el plato
+        plato.setIdPlato(Integer.parseInt(TxtIdplato.getText()));
+        resp = this.CONTROL.editar(plato);
+        if (resp.equals("OK")) {
+            JOptionPane.showMessageDialog(null, "Plato editado correctamente", "Editar", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    // Limpieza
+    limpiar();
+    listar(""); 
+    }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
+        limpiar();
+    TabPlato.setSelectedIndex(0);  // Retorna al listado
+    }//GEN-LAST:event_BtnCerrarActionPerformed
+
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+        listar(TxtBuscar.getText());
+    }//GEN-LAST:event_BtnBuscarActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnEliminar;
+    private javax.swing.JButton BtnGuardar;
     private javax.swing.JButton BtnNuevo;
     private javax.swing.JLabel LblBuscar;
+    private javax.swing.JLabel LblCategoria;
+    private javax.swing.JLabel LblCodigo;
+    private javax.swing.JLabel LblDescripcion;
+    private javax.swing.JLabel LblEstado;
+    private javax.swing.JLabel LblNombre;
+    private javax.swing.JLabel LblPlato;
+    private javax.swing.JLabel LblPrecio;
     private javax.swing.JTabbedPane TabPlato;
     private javax.swing.JTable TblPlato;
     private javax.swing.JTextField TxtBuscar;
+    private javax.swing.JTextField TxtCategoria;
+    private javax.swing.JTextArea TxtDescripcion;
+    private javax.swing.JTextField TxtEstado;
+    private javax.swing.JTextField TxtIdplato;
+    private javax.swing.JTextField TxtNombre;
+    private javax.swing.JTextField TxtPrecio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

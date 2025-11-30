@@ -5,6 +5,8 @@
 package projectrest.Presentacion;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import projectrest.Entidades.Session.Session;
 
 /**
  *
@@ -12,6 +14,7 @@ import javax.swing.JInternalFrame;
  */
 public class Frm_Principal extends javax.swing.JFrame {
 
+    Session session = Session.getInstance();
     private JInternalFrame main_frame;
 
     /**
@@ -49,6 +52,15 @@ public class Frm_Principal extends javax.swing.JFrame {
         this.centerInternalFrame(frm);
     }
 
+    public boolean sessionActived() {
+        if (!session.isAuthenticated()) {
+            JOptionPane.showMessageDialog(null, "Debes inciar sesión primero..!", "Sistema Restaurante", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +71,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         Principal = new javax.swing.JDesktopPane();
-        menuBar = new javax.swing.JMenuBar();
+        MnPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenMesas = new javax.swing.JMenuItem();
         MenPlatos = new javax.swing.JMenuItem();
@@ -75,10 +87,10 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        menuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuBar.setMaximumSize(new java.awt.Dimension(379, 32768));
-        menuBar.setMinimumSize(new java.awt.Dimension(379, 39));
-        menuBar.setPreferredSize(new java.awt.Dimension(379, 39));
+        MnPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MnPrincipal.setMaximumSize(new java.awt.Dimension(379, 32768));
+        MnPrincipal.setMinimumSize(new java.awt.Dimension(379, 39));
+        MnPrincipal.setPreferredSize(new java.awt.Dimension(379, 39));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Maestro.png"))); // NOI18N
         jMenu1.setText("Maestros");
@@ -123,7 +135,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(MenEmpleados);
 
-        menuBar.add(jMenu1);
+        MnPrincipal.add(jMenu1);
 
         MenPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Venta.png"))); // NOI18N
         MenPedidos.setText("Pedidos");
@@ -138,7 +150,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         MenComprobantes.setText("Módulo de Comprobantes");
         MenPedidos.add(MenComprobantes);
 
-        menuBar.add(MenPedidos);
+        MnPrincipal.add(MenPedidos);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Calificaciones.png"))); // NOI18N
         jMenu3.setText("Calificaciones");
@@ -148,7 +160,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         MenCalificacion.setText("Módulo de Calificación");
         jMenu3.add(MenCalificacion);
 
-        menuBar.add(jMenu3);
+        MnPrincipal.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Cerrar.png"))); // NOI18N
         jMenu4.setText("Cerrar");
@@ -163,9 +175,9 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jMenu4.add(MenSalir);
 
-        menuBar.add(jMenu4);
+        MnPrincipal.add(jMenu4);
 
-        setJMenuBar(menuBar);
+        setJMenuBar(MnPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,8 +196,11 @@ public class Frm_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenEmpleadosActionPerformed
-        Frm_Empleado frm = new Frm_Empleado();
-        this.visibleFrame(frm);
+        if (this.sessionActived()) {
+            Frm_Empleado frm = new Frm_Empleado();
+            this.visibleFrame(frm);
+        }
+
     }//GEN-LAST:event_MenEmpleadosActionPerformed
 
     private void MenSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenSalirActionPerformed
@@ -193,18 +208,24 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenSalirActionPerformed
 
     private void MenMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenMesasActionPerformed
-        Frm_Mesa frm = new Frm_Mesa();
-        this.visibleFrame(frm);
+        if (this.sessionActived()) {
+            Frm_Mesa frm = new Frm_Mesa();
+            this.visibleFrame(frm);
+        }
     }//GEN-LAST:event_MenMesasActionPerformed
 
     private void MenClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenClientesActionPerformed
-        Frm_Cliente frm = new Frm_Cliente();
-        this.visibleFrame(frm);
+        if (this.sessionActived()) {
+            Frm_Cliente frm = new Frm_Cliente();
+            this.visibleFrame(frm);
+        }
     }//GEN-LAST:event_MenClientesActionPerformed
 
     private void MenPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenPlatosActionPerformed
-        Frm_Plato frm = new Frm_Plato();
-        this.visibleFrame(frm);
+        if (this.sessionActived()) {
+            Frm_Plato frm = new Frm_Plato();
+            this.visibleFrame(frm);
+        }
     }//GEN-LAST:event_MenPlatosActionPerformed
 
     /**
@@ -251,12 +272,12 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu MenPedidos;
     private javax.swing.JMenuItem MenPlatos;
     private javax.swing.JMenuItem MenSalir;
+    private javax.swing.JMenuBar MnPrincipal;
     private javax.swing.JDesktopPane Principal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
 }

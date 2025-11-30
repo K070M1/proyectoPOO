@@ -122,6 +122,7 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
+        setClosable(true);
         setTitle("Mantenimiento de Empleados");
 
         TblEmpleado.setModel(new javax.swing.table.DefaultTableModel(

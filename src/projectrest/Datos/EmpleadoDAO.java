@@ -12,15 +12,15 @@ import projectrest.Datos.Interfaces.IEmpleado;
 import projectrest.Entidades.Empleado;
 
 public class EmpleadoDAO implements IEmpleado {
-    
+
     private final Conexion CNX;
     private PreparedStatement ps;
     private ResultSet rs;
-    
+
     public EmpleadoDAO() {
         this.CNX = Conexion.getInstancia();
     }
-    
+
     @Override
     public List<Empleado> listar(String texto) {
         List<Empleado> registros = new ArrayList<>();
@@ -32,7 +32,7 @@ public class EmpleadoDAO implements IEmpleado {
             ps.setString(1, "%" + texto + "%");
             ps.setString(2, "%" + texto + "%");
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 Empleado emp = new Empleado();
                 emp.setIdEmpleado(rs.getInt(1));
@@ -59,7 +59,7 @@ public class EmpleadoDAO implements IEmpleado {
         }
         return registros;
     }
-    
+
     @Override
     public boolean insertar(Empleado empleado) {
         boolean ok = false;
@@ -83,7 +83,7 @@ public class EmpleadoDAO implements IEmpleado {
         }
         return ok;
     }
-    
+
     @Override
     public boolean editar(Empleado empleado) {
         boolean ok = false;
@@ -111,7 +111,24 @@ public class EmpleadoDAO implements IEmpleado {
         }
         return ok;
     }
-    
+
+    @Override
+    public boolean eliminar(Empleado empleado) {
+        boolean ok = false;
+        try {
+            ps = CNX.conectar().prepareStatement("DELETE FROM Empleado WHERE idEmpleado=?");
+            ps.setInt(1, empleado.getIdEmpleado());
+            ok = ps.executeUpdate() > 0;
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            CNX.desconectar();
+        }
+        return ok;
+    }
+
     public boolean editarCredenciales(Empleado empleado) {
         boolean ok = false;
         try {
@@ -131,61 +148,49 @@ public class EmpleadoDAO implements IEmpleado {
         }
         return ok;
     }
-    
-    private Empleado iniciarSesion(String usuario, String clave) {
-        Empleado empleado = new Empleado();
+
+    public String iniciarSesion(String usuario, String clave) {
+        String message = "";
         try {
             ps = CNX.conectar().prepareStatement("SELECT idEmpleado, clave, estado, rol, usuario FROM Empleado WHERE usuario = ?");
             ps.setString(1, usuario);
             rs = ps.executeQuery();
-            
+
             if (rs.next()) {
                 int id = rs.getInt("idEmpleado");
                 String pass = rs.getString("clave");
                 boolean estado = rs.getBoolean("estado");
                 String rol = rs.getString("rol");
                 String user = rs.getString("usuario");
-                
+
                 if (estado) {
                     String clave_ing_hash = hashing(clave);
                     if (pass.equals(clave_ing_hash)) {
-                        empleado.setUsuario(user);
-                        empleado.setRol(rol);
-                        empleado.setIdEmpleado(id);
-                        empleado.setEstado(estado);
+                        message = user;
+                    } else {
+                        message = "ERROR LOGIN: Clave no válida..!";
                     }
+                } else {
+                    message = "ERROR LOGIN: Estado no válido..!";
                 }
+            } else {
+                message = "ERROR LOGIN: Usuario no encontrado o inválido..!";
             }
-            
+
             ps.close();
             rs.close();
         } catch (SQLException e) {
+            message = "ERROR LOGIN: " + e.getMessage();
             JOptionPane.showMessageDialog(null, e.getMessage());
         } finally {
             ps = null;
             rs = null;
             CNX.desconectar();
         }
-        return empleado;
+        System.out.println("===> " + message);
+        return message;
     }
-    
-    @Override
-    public boolean eliminar(Empleado empleado) {
-        boolean ok = false;
-        try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Empleado WHERE idEmpleado=?");
-            ps.setInt(1, empleado.getIdEmpleado());
-            ok = ps.executeUpdate() > 0;
-            ps.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            ps = null;
-            CNX.desconectar();
-        }
-        return ok;
-    }
-    
+
     private String hashing(String pass) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

@@ -13,6 +13,8 @@ import projectrest.Datos.EmpleadoDAO;
 import projectrest.Entidades.Empleado;
 import javax.swing.table.DefaultTableModel;
 
+import projectrest.Entidades.Session.Session;
+
 public class EmpleadoNegocio {
 
     private final EmpleadoDAO DATOS;
@@ -92,5 +94,16 @@ public class EmpleadoNegocio {
         items.addElement("Tarde");
         items.addElement("Noche");
         return items;
+    }
+
+    public String iniciarSesion(String username, String password) {
+        String msg = DATOS.iniciarSesion(username, password);
+        if (msg.contains("ERROR LOGIN:")) {
+            return msg;
+        } else {
+            Session session = Session.getInstance();
+            session.login(msg);
+            return "Inicio de sesión exitoso..!";
+        }
     }
 }

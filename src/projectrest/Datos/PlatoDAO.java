@@ -62,7 +62,7 @@ public class PlatoDAO implements IPlato {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "INSERT INTO Platos (codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia) VALUES (?,?,?,?,?,?,?)"
+                    "INSERT INTO Plato (codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia) VALUES (?,?,?,?,?,?,?)"
             );
             ps.setString(1, plato.getCodigo());
             ps.setString(2, plato.getNombre());
@@ -87,7 +87,7 @@ public class PlatoDAO implements IPlato {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Platos SET codigo=?, nombre=?, descripcion=?, categoriaPlato=?, precio=?, estadoPlato=?, imagenReferencia=? WHERE idPlato=?"
+                    "UPDATE Plato SET codigo=?, nombre=?, descripcion=?, categoriaPlato=?, precio=?, estadoPlato=?, imagenReferencia=? WHERE idPlato=?"
             );
             ps.setString(1, plato.getCodigo());
             ps.setString(2, plato.getNombre());
@@ -112,7 +112,7 @@ public class PlatoDAO implements IPlato {
     public boolean eliminar(Plato plato) {
         boolean ok = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Platos WHERE idPlato=?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM Plato WHERE idPlato=?");
             ps.setInt(1, plato.getIdPlato());
             ok = ps.executeUpdate() > 0;
             ps.close();
@@ -123,5 +123,81 @@ public class PlatoDAO implements IPlato {
             CNX.desconectar();
         }
         return ok;
+    }
+
+    public String obtenerUltimoCodigo() {
+        String ultimo = "";
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "SELECT codigo FROM plato ORDER BY idPlato DESC LIMIT 1"
+            );
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                ultimo = rs.getString(1);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            rs = null;
+            ps = null;
+            CNX.desconectar();
+        }
+        return ultimo;
+    }
+
+    public String obtenerSiguienteCodigo() {
+        String codigo = "";
+        try {
+            ps = CNX.conectar().prepareStatement(
+                    "SELECT codigo FROM plato ORDER BY idPlato DESC LIMIT 1"
+            );
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                codigo = rs.getString("codigo");
+            }
+
+            ps.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            rs = null;
+            CNX.desconectar();
+        }
+        if (codigo.equals("")) {
+            return "C0001";
+        }
+        int num = Integer.parseInt(codigo.substring(1));
+
+        num++;
+        return "C" + String.format("%04d", num);
+    }
+
+    public List<Plato> seleccionar() {
+        List<Plato> registros = new ArrayList<>();
+        try {
+            ps = CNX.conectar().prepareStatement("SELECT idPlato, nombre, precio, categoriaPlato, codigo FROM plato WHERE estadoPlato = 1");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                registros.add(
+                        new Plato(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5))
+                );
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            rs = null;
+            CNX.desconectar();
+        }
+        return registros;
     }
 }

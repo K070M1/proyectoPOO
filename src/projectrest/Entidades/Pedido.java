@@ -4,6 +4,8 @@
  */
 package projectrest.Entidades;
 
+import java.util.List;
+
 /**
  *
  * @author Rafael
@@ -12,21 +14,53 @@ public class Pedido {
 
     private int idPedido;
     private int idEmpleado;
+    private String empleado;
     private int idCliente;
+    private String cliente;
     private int idMesa;
+    private String nroMesa;
     private float montoTotal;
     private String fechaPedido;
+    private boolean estado;
+    private String tipoComprobante;
+    private String serie;
+    private int correlativo;
+    private List<DetallePedido> detalles;
 
     public Pedido() {
     }
 
-    public Pedido(int idPedido, int idEmpleado, int idCliente, int idMesa, float montoTotal, String fechaPedido) {
+    public Pedido(int idPedido, int idEmpleado, String empleado, int idCliente, String cliente, int idMesa, String nroMesa, float montoTotal, String fechaPedido, boolean estado, String tipoComprobante, String serie, int correlativo) {
         this.idPedido = idPedido;
         this.idEmpleado = idEmpleado;
+        this.empleado = empleado;
         this.idCliente = idCliente;
+        this.cliente = cliente;
         this.idMesa = idMesa;
+        this.nroMesa = nroMesa;
         this.montoTotal = montoTotal;
         this.fechaPedido = fechaPedido;
+        this.estado = estado;
+        this.tipoComprobante = tipoComprobante;
+        this.serie = serie;
+        this.correlativo = correlativo;
+    }
+
+    public Pedido(int idPedido, int idEmpleado, String empleado, int idCliente, String cliente, int idMesa, String nroMesa, float montoTotal, String fechaPedido, boolean estado, String tipoComprobante, String serie, int correlativo, List<DetallePedido> detalles) {
+        this.idPedido = idPedido;
+        this.idEmpleado = idEmpleado;
+        this.empleado = empleado;
+        this.idCliente = idCliente;
+        this.cliente = cliente;
+        this.idMesa = idMesa;
+        this.nroMesa = nroMesa;
+        this.montoTotal = montoTotal;
+        this.fechaPedido = fechaPedido;
+        this.estado = estado;
+        this.tipoComprobante = tipoComprobante;
+        this.serie = serie;
+        this.correlativo = correlativo;
+        this.detalles = detalles;
     }
 
     public int getIdPedido() {
@@ -45,6 +79,14 @@ public class Pedido {
         this.idEmpleado = idEmpleado;
     }
 
+    public String getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(String empleado) {
+        this.empleado = empleado;
+    }
+
     public int getIdCliente() {
         return idCliente;
     }
@@ -53,12 +95,28 @@ public class Pedido {
         this.idCliente = idCliente;
     }
 
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
     public int getIdMesa() {
         return idMesa;
     }
 
     public void setIdMesa(int idMesa) {
         this.idMesa = idMesa;
+    }
+
+    public String getNroMesa() {
+        return nroMesa;
+    }
+
+    public void setNroMesa(String nroMesa) {
+        this.nroMesa = nroMesa;
     }
 
     public float getMontoTotal() {
@@ -77,8 +135,44 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" + "idPedido=" + idPedido + ", idEmpleado=" + idEmpleado + ", idCliente=" + idCliente + ", idMesa=" + idMesa + ", montoTotal=" + montoTotal + ", fechaPedido=" + fechaPedido + '}';
+    public boolean isEstado() {
+        return estado;
     }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getTipoComprobante() {
+        return tipoComprobante;
+    }
+
+    public void setTipoComprobante(String tipoComprobante) {
+        this.tipoComprobante = tipoComprobante;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public int getCorrelativo() {
+        return correlativo;
+    }
+
+    public void setCorrelativo(int correlativo) {
+        this.correlativo = correlativo;
+    }
+
+    public List<DetallePedido> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetallePedido> detalles) {
+        this.detalles = detalles;
+    }
+
 }

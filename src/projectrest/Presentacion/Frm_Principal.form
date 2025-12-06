@@ -92,7 +92,7 @@
             <Property name="text" type="java.lang.String" value="Pedidos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="MnPedido">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+V"/>
@@ -102,17 +102,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="M&#xf3;dulo de Pedidos"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenComprobantes">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+O"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/projectrest/Presentacion/Imagenes/Comprobante.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="M&#xf3;dulo de Comprobantes"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnPedidoActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -134,6 +126,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="M&#xf3;dulo de Calificaci&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenCalificacionActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

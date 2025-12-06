@@ -29,6 +29,11 @@ public class Empleado {
         this.idEmpleado = idEmpleado;
     }
 
+    public Empleado(int idEmpleado, String nombreCompleto) {
+        this.idEmpleado = idEmpleado;
+        this.nombreCompleto = nombreCompleto;
+    }
+
     public Empleado(String usuario, String clave) {
         this.usuario = usuario;
         this.clave = clave;
@@ -150,6 +155,6 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "idEmpleado=" + idEmpleado + ", nombreCompleto=" + nombreCompleto + ", rol=" + rol + ", tipoDocumento=" + tipoDocumento + ", documento=" + documento + ", usuario=" + usuario + ", clave=" + clave + ", turno=" + turno + ", estado=" + estado + ", fechaIngreso=" + fechaIngreso + ", fechaSalida=" + fechaSalida + '}';
+        return nombreCompleto;
     }
 }

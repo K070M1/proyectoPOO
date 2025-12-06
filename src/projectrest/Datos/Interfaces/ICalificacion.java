@@ -17,7 +17,7 @@ public interface ICalificacion {
 
     public boolean insertar(Calificacion calificacion);
 
-    public boolean eliminar(Calificacion calificacion);
+    public boolean eliminar(int id);
 
     public boolean editar(Calificacion calificacion);
 }

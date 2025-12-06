@@ -78,8 +78,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         MenClientes = new javax.swing.JMenuItem();
         MenEmpleados = new javax.swing.JMenuItem();
         MenPedidos = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        MenComprobantes = new javax.swing.JMenuItem();
+        MnPedido = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MenCalificacion = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -140,15 +139,15 @@ public class Frm_Principal extends javax.swing.JFrame {
         MenPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Venta.png"))); // NOI18N
         MenPedidos.setText("Pedidos");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Pedido.png"))); // NOI18N
-        jMenuItem1.setText("Módulo de Pedidos");
-        MenPedidos.add(jMenuItem1);
-
-        MenComprobantes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenComprobantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Comprobante.png"))); // NOI18N
-        MenComprobantes.setText("Módulo de Comprobantes");
-        MenPedidos.add(MenComprobantes);
+        MnPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        MnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Pedido.png"))); // NOI18N
+        MnPedido.setText("Módulo de Pedidos");
+        MnPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPedidoActionPerformed(evt);
+            }
+        });
+        MenPedidos.add(MnPedido);
 
         MnPrincipal.add(MenPedidos);
 
@@ -158,6 +157,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         MenCalificacion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         MenCalificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Calificacion.png"))); // NOI18N
         MenCalificacion.setText("Módulo de Calificación");
+        MenCalificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenCalificacionActionPerformed(evt);
+            }
+        });
         jMenu3.add(MenCalificacion);
 
         MnPrincipal.add(jMenu3);
@@ -228,6 +232,20 @@ public class Frm_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MenPlatosActionPerformed
 
+    private void MnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPedidoActionPerformed
+        if (this.sessionActived()) {
+            Frm_Pedido frm = new Frm_Pedido(this);
+            this.visibleFrame(frm);
+        }
+    }//GEN-LAST:event_MnPedidoActionPerformed
+
+    private void MenCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCalificacionActionPerformed
+        if (this.sessionActived()) {
+            Frm_Calificacion frm = new Frm_Calificacion(this);
+            this.visibleFrame(frm);
+        }
+    }//GEN-LAST:event_MenCalificacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,18 +284,17 @@ public class Frm_Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenCalificacion;
     private javax.swing.JMenuItem MenClientes;
-    private javax.swing.JMenuItem MenComprobantes;
     private javax.swing.JMenuItem MenEmpleados;
     private javax.swing.JMenuItem MenMesas;
     private javax.swing.JMenu MenPedidos;
     private javax.swing.JMenuItem MenPlatos;
     private javax.swing.JMenuItem MenSalir;
+    private javax.swing.JMenuItem MnPedido;
     private javax.swing.JMenuBar MnPrincipal;
     private javax.swing.JDesktopPane Principal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
 }

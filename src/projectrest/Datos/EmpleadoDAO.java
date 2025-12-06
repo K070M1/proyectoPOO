@@ -166,7 +166,7 @@ public class EmpleadoDAO implements IEmpleado {
                 if (estado) {
                     String clave_ing_hash = hashing(clave);
                     if (pass.equals(clave_ing_hash)) {
-                        message = user;
+                        message = id + "|" + user + "|" + rol;
                     } else {
                         message = "ERROR LOGIN: Clave no válida..!";
                     }
@@ -189,6 +189,29 @@ public class EmpleadoDAO implements IEmpleado {
         }
         System.out.println("===> " + message);
         return message;
+    }
+
+    public List<Empleado> seleccionar() {
+        List<Empleado> registros = new ArrayList<>();
+        try {
+            ps = CNX.conectar().prepareStatement("SELECT idEmpleado, nombreCompleto FROM empleado WHERE estado = 1");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                registros.add(
+                        new Empleado(rs.getInt(1), rs.getString(2))
+                );
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            rs = null;
+            CNX.desconectar();
+        }
+        return registros;
     }
 
     private String hashing(String pass) {

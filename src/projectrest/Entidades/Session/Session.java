@@ -23,8 +23,8 @@ public class Session {
         return instance;
     }
 
-    public void login(String username) {
-        this.currentUser = new User(username);
+    public void login(int id, String username, String rol) {
+        this.currentUser = new User(id, username, rol);
     }
 
     public void logout() {

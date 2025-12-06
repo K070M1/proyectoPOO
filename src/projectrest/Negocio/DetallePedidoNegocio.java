@@ -19,19 +19,40 @@ public class DetallePedidoNegocio {
         this.DATOS = new DetallePedidoDAO();
     }
 
-    public DefaultTableModel listar(String texto) {
-        List<DetallePedido> lista = new ArrayList<>();
-        lista.addAll(DATOS.listar(texto));
-        String[] columnas = {"ID", "Pedido", "Plato", "Cantidad", "Descuento"};
-        this.dtm = new DefaultTableModel(null, columnas);
-        String[] reg = new String[5];
-        for (DetallePedido d : lista) {
-            reg[0] = Integer.toString(d.getIdDetalle());
-            reg[1] = Integer.toString(d.getIdPedido());
-            reg[2] = Integer.toString(d.getIdPlato());
-            reg[3] = Integer.toString(d.getCantidad());
-            reg[4] = Float.toString(d.getDescuento());
-            this.dtm.addRow(reg);
+    public DefaultTableModel listar(int id) {
+        List<DetallePedido> lista = new ArrayList();
+        lista.addAll(DATOS.listar(id));
+
+        String[] titulos = {"Id", "CODIGO", "CATEGORIA", "PLATO", "CANTIDAD", "PRECIO", "DESCUENTO", "SUBTOTAL"};
+        this.dtm = new DefaultTableModel(null, titulos);
+
+        String[] registro = new String[8];
+        String categoriaPlato;
+
+        for (DetallePedido item : lista) {
+            switch (item.getCategoriaPlato()) {
+                case "P":
+                    categoriaPlato = "Principal";
+                    break;
+                case "S":
+                    categoriaPlato = "Sopas";
+                    break;
+                case "B":
+                    categoriaPlato = "Bebidas";
+                    break;
+                default:
+                    categoriaPlato = "Principal";
+
+            }
+            registro[0] = Integer.toString(item.getIdPlato());
+            registro[1] = item.getCodigoPlato();
+            registro[2] = categoriaPlato;
+            registro[3] = item.getNombrePlato();
+            registro[4] = Integer.toString(item.getCantidad());
+            registro[5] = Float.toString(item.getPrecioPlato());
+            registro[6] = Double.toString(item.getDescuento());
+            registro[7] = Double.toString(item.getSubtotal());
+            this.dtm.addRow(registro);
         }
         return this.dtm;
     }

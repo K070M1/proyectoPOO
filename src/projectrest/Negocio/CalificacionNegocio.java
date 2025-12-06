@@ -26,15 +26,18 @@ public class CalificacionNegocio {
     public DefaultTableModel listar(String texto) {
         List<Calificacion> lista = new ArrayList<>();
         lista.addAll(DATOS.listar(texto));
-        String[] columnas = {"ID", "Pedido", "Calificación", "Comentarios", "Fecha"};
+        String[] columnas = {"ID", "ID Pedido", "Cliente", "Total Pedido", "Fecha Pedido", "Calificación", "Comentarios", "Fecha"};
         this.dtm = new DefaultTableModel(null, columnas);
-        String[] reg = new String[5];
+        String[] reg = new String[8];
         for (Calificacion c : lista) {
             reg[0] = Integer.toString(c.getIdCalificacion());
             reg[1] = Integer.toString(c.getIdPedido());
-            reg[2] = Integer.toString(c.getCalificacion());
-            reg[3] = c.getComentarios();
-            reg[4] = c.getFechaCalificacion();
+            reg[2] = c.getClientePedido();
+            reg[3] = Float.toString(c.getMontoPedido());
+            reg[4] = c.getFechaPedido();
+            reg[5] = Integer.toString(c.getCalificacion());
+            reg[6] = c.getComentarios();
+            reg[7] = c.getFechaCalificacion();
             this.dtm.addRow(reg);
         }
         return this.dtm;
@@ -48,7 +51,7 @@ public class CalificacionNegocio {
         return DATOS.editar(calificacion) ? "OK" : "Error en la inserción";
     }
 
-    public String eliminar(Calificacion calificacion) {
-        return DATOS.eliminar(calificacion) ? "OK" : "Error en la inserción";
+    public String eliminar(int id) {
+        return DATOS.eliminar(id) ? "OK" : "Error en la inserción";
     }
 }

@@ -102,7 +102,8 @@ public class EmpleadoNegocio {
             return msg;
         } else {
             Session session = Session.getInstance();
-            session.login(msg);
+            String[] parts = msg.split("\\|");
+            session.login(Integer.parseInt(parts[0]), parts[1], parts[2]);
             return "Inicio de sesión exitoso..!";
         }
     }

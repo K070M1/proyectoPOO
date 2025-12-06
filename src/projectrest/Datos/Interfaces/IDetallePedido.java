@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IDetallePedido {
 
-    public List<DetallePedido> listar(String texto);
+    public List<DetallePedido> listar(int id);
 
     public boolean insertar(DetallePedido detalle);
 

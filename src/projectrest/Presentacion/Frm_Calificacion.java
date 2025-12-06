@@ -4,17 +4,65 @@
  */
 package projectrest.Presentacion;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableRowSorter;
+import projectrest.Entidades.Calificacion;
+import projectrest.Negocio.CalificacionNegocio;
+
 /**
  *
  * @author Rafael
  */
 public class Frm_Calificacion extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Frm_Calificacion
-     */
-    public Frm_Calificacion() {
+    private Calificacion calificacion;
+    private final CalificacionNegocio CONTROL;
+    public JFrame contenedor;
+    private String resp;
+    private int idRow;
+    private String action;
+
+    public Frm_Calificacion(JFrame frmP) {
         initComponents();
+        this.contenedor = frmP;
+        this.CONTROL = new CalificacionNegocio();
+        this.listar("");
+        this.limpiarFormulario(0);
+    }
+
+    private void listar(String texto) {
+        TblCalificaciones.setModel(this.CONTROL.listar(texto));
+        TableRowSorter orden = new TableRowSorter(TblCalificaciones.getModel());
+        TblCalificaciones.setRowSorter(orden);
+        int[] columnas = {0, 1, 4};
+        this.ocultarColumnas(columnas);
+    }
+
+    private void ocultarColumnas(int[] columns) {
+        for (int col : columns) {
+            TblCalificaciones.getColumnModel().getColumn(col).setMaxWidth(0);
+            TblCalificaciones.getColumnModel().getColumn(col).setMinWidth(0);
+            TblCalificaciones.getTableHeader().getColumnModel().getColumn(col).setMaxWidth(0);
+            TblCalificaciones.getTableHeader().getColumnModel().getColumn(col).setMinWidth(0);
+        }
+    }
+
+    private void limpiarFormulario(int nro) {
+        this.TxtIdPedido.setText("");
+        this.TxtPedidoLabel.setText("");
+        this.CmbCalificacion.setSelectedIndex(0);
+        this.TxtComentarios.setText("");
+        this.action = "guardar";
+        this.idRow = -1;
+
+        this.changesTabbs(nro);
+    }
+
+    private void changesTabbs(int nro) {
+        TabCalificaciones.setEnabledAt(nro, true);
+        TabCalificaciones.setEnabledAt(nro == 0 ? 1 : 0, false);
+        TabCalificaciones.setSelectedIndex(nro);
     }
 
     /**
@@ -26,21 +74,389 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TabCalificaciones = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        TxtBuscar = new javax.swing.JTextField();
+        BtnBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TblCalificaciones = new javax.swing.JTable();
+        BtnNuevo = new javax.swing.JButton();
+        BtnEditar = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        TxtPedidoLabel = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        CmbCalificacion = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TxtComentarios = new javax.swing.JTextArea();
+        BtnGuardar = new javax.swing.JButton();
+        BtnCancelar = new javax.swing.JButton();
+        BtnSeleccionarPedido = new javax.swing.JButton();
+        TxtIdPedido = new javax.swing.JTextField();
+
+        setClosable(true);
+        setTitle("Formulario de Calificaciones");
+
+        TxtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtBuscarActionPerformed(evt);
+            }
+        });
+
+        BtnBuscar.setText("Buscar");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
+
+        TblCalificaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(TblCalificaciones);
+
+        BtnNuevo.setText("Nuevo");
+        BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNuevoActionPerformed(evt);
+            }
+        });
+
+        BtnEditar.setText("Editar");
+        BtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditarActionPerformed(evt);
+            }
+        });
+
+        BtnEliminar.setText("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(BtnBuscar)
+                        .addGap(127, 127, 127)
+                        .addComponent(BtnEliminar)
+                        .addGap(12, 12, 12)
+                        .addComponent(BtnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnNuevo)))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnBuscar)
+                    .addComponent(BtnEliminar)
+                    .addComponent(BtnEditar)
+                    .addComponent(BtnNuevo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
+        );
+
+        TabCalificaciones.addTab("Listado", jPanel1);
+
+        jLabel1.setText("Pedido:");
+
+        TxtPedidoLabel.setEditable(false);
+        TxtPedidoLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtPedidoLabelActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Calificación:");
+
+        CmbCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "1", "2", "3", "4", "5" }));
+        CmbCalificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbCalificacionActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Comentarios:");
+
+        TxtComentarios.setColumns(20);
+        TxtComentarios.setRows(5);
+        TxtComentarios.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                TxtComentariosAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane2.setViewportView(TxtComentarios);
+
+        BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
+
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
+
+        BtnSeleccionarPedido.setText("Seleccionar");
+        BtnSeleccionarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSeleccionarPedidoActionPerformed(evt);
+            }
+        });
+
+        TxtIdPedido.setEditable(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CmbCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(TxtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(TxtPedidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                        .addComponent(BtnSeleccionarPedido))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(BtnGuardar)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnCancelar)))
+                        .addGap(44, 44, 44))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TxtPedidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnSeleccionarPedido)
+                    .addComponent(TxtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(CmbCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnGuardar)
+                    .addComponent(BtnCancelar))
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+
+        TabCalificaciones.addTab("Formulario", jPanel2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(TabCalificaciones, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TabCalificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TxtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBuscarActionPerformed
+        this.listar(TxtBuscar.getText());
+    }//GEN-LAST:event_TxtBuscarActionPerformed
+
+    private void BtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoActionPerformed
+        this.limpiarFormulario(1);
+    }//GEN-LAST:event_BtnNuevoActionPerformed
+
+    private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
+        if (TblCalificaciones.getSelectedRowCount() == 1) {
+            // ID
+            String id = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 0));
+
+            // OTROS CAMPOS
+            String idPedido = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 1));
+            String nombreCliente = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 2));
+            String total = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 3));
+            String fechaPedido = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 4));
+            String ncal = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 5));
+            String comentarios = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 6));
+            
+
+            // TEXTFIELDS
+            this.TxtIdPedido.setText(idPedido);
+            this.TxtPedidoLabel.setText(fechaPedido + " | " + nombreCliente + ", S/" + total);
+            this.CmbCalificacion.setSelectedItem(ncal);
+            this.TxtComentarios.setText(comentarios);
+
+            changesTabbs(1);
+            this.action = "editar";
+            this.idRow = Integer.parseInt(id);
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un registro de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEditarActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        if (TblCalificaciones.getSelectedRowCount() == 1) {
+            String id = String.valueOf(TblCalificaciones.getValueAt(TblCalificaciones.getSelectedRow(), 0));
+
+            int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar este registro?", "Quitar registro", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                resp = this.CONTROL.eliminar(Integer.parseInt(id));
+                if (resp.equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Quitar registro", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiarFormulario(0);
+                    this.listar("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", "Quitar registro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un registro de la tabla..!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+        listar(TxtBuscar.getText());
+    }//GEN-LAST:event_BtnBuscarActionPerformed
+
+    private void CmbCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbCalificacionActionPerformed
+        // ---
+    }//GEN-LAST:event_CmbCalificacionActionPerformed
+
+    private void TxtPedidoLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPedidoLabelActionPerformed
+        // ---
+    }//GEN-LAST:event_TxtPedidoLabelActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        String title_s = this.action.equals("guardar") ? "Nuevo registro" : "Edición del registro";
+        calificacion = new Calificacion();
+        String idPedido = this.TxtIdPedido.getText();
+
+        if (idPedido.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Necesitas seleccionar un pedido...!", title_s, JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String nCalificacion = this.CmbCalificacion.getSelectedItem().toString();
+        if (nCalificacion.equals("Selecciona")) {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar un calificación válida..!", title_s, JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        calificacion.setIdPedido(Integer.parseInt(idPedido));
+        calificacion.setCalificacion(Integer.parseInt(nCalificacion));
+        calificacion.setComentarios(this.TxtComentarios.getText());
+
+        if (this.action.equals("editar") && idRow == -1) {
+            JOptionPane.showMessageDialog(null, "No hay un ID válido", title_s, JOptionPane.WARNING_MESSAGE);
+        } else {
+            calificacion.setIdCalificacion(idRow);
+        }
+
+        int res = JOptionPane.showConfirmDialog(null, "¿Estas seguro de guardar los cambios?", title_s, JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.YES_OPTION) {
+            resp = this.action.equals("guardar") ? this.CONTROL.insertar(calificacion) : this.CONTROL.editar(calificacion);
+            if (resp.equals("OK")) {
+                JOptionPane.showMessageDialog(null, "Registro guardado correctamente", title_s, JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarFormulario(0);
+                this.listar("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", title_s, JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        this.limpiarFormulario(0);
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void TxtComentariosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TxtComentariosAncestorAdded
+        // ---
+    }//GEN-LAST:event_TxtComentariosAncestorAdded
+
+    private void BtnSeleccionarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeleccionarPedidoActionPerformed
+        Frm_Calificaciones_Pedido frm = new Frm_Calificaciones_Pedido(contenedor, this, true);
+        frm.toFront();
+    }//GEN-LAST:event_BtnSeleccionarPedidoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnEditar;
+    private javax.swing.JButton BtnEliminar;
+    private javax.swing.JButton BtnGuardar;
+    private javax.swing.JButton BtnNuevo;
+    private javax.swing.JButton BtnSeleccionarPedido;
+    private javax.swing.JComboBox<String> CmbCalificacion;
+    private javax.swing.JTabbedPane TabCalificaciones;
+    private javax.swing.JTable TblCalificaciones;
+    private javax.swing.JTextField TxtBuscar;
+    private javax.swing.JTextArea TxtComentarios;
+    public javax.swing.JTextField TxtIdPedido;
+    public javax.swing.JTextField TxtPedidoLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JTextField txtIdCalificacion;
+
 }

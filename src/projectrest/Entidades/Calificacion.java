@@ -15,8 +15,22 @@ public class Calificacion {
     private int calificacion;
     private String comentarios;
     private String fechaCalificacion;
+    private String fechaPedido;
+    private float montoPedido;
+    private String clientePedido;
 
     public Calificacion() {
+    }
+
+    public Calificacion(int idCalificacion, int idPedido, int calificacion, String comentarios, String fechaCalificacion, String fechaPedido, float montoPedido, String clientePedido) {
+        this.idCalificacion = idCalificacion;
+        this.idPedido = idPedido;
+        this.calificacion = calificacion;
+        this.comentarios = comentarios;
+        this.fechaCalificacion = fechaCalificacion;
+        this.fechaPedido = fechaPedido;
+        this.montoPedido = montoPedido;
+        this.clientePedido = clientePedido;
     }
 
     public Calificacion(int idCalificacion, int idPedido, int calificacion, String comentarios, String fechaCalificacion) {
@@ -66,6 +80,32 @@ public class Calificacion {
     public void setFechaCalificacion(String fechaCalificacion) {
         this.fechaCalificacion = fechaCalificacion;
     }
+
+    public String getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(String fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
+    public float getMontoPedido() {
+        return montoPedido;
+    }
+
+    public void setMontoPedido(float montoPedido) {
+        this.montoPedido = montoPedido;
+    }
+
+    public String getClientePedido() {
+        return clientePedido;
+    }
+
+    public void setClientePedido(String clientePedido) {
+        this.clientePedido = clientePedido;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -10,13 +10,40 @@ package projectrest.Entidades.Session;
  */
 public class User {
 
-    private final String username;
+    private int idUser;
+    private String username;
+    private String rol;
 
-    public User(String username) {
+    public User() {
+    }
+
+    public User(int idUser, String username, String rol) {
+        this.idUser = idUser;
         this.username = username;
+        this.rol = rol;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

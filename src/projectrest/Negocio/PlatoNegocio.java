@@ -22,18 +22,34 @@ public class PlatoNegocio {
     public DefaultTableModel listar(String texto) {
         List<Plato> lista = new ArrayList<>();
         lista.addAll(DATOS.listar(texto));
-        String[] columnas = {"ID", "Código", "Nombre", "Descripción", "Categoría", "Precio", "Estado", "Imagen"};
+
+        String[] columnas = {"ID", "Código", "Nombre", "Descripción", "Categoría", "Precio", "Estado"};
         this.dtm = new DefaultTableModel(null, columnas);
-        String[] reg = new String[8];
+        String[] reg = new String[7];
+        String categoriaPlato;
+
         for (Plato p : lista) {
+            switch (p.getCategoriaPlato()) {
+                case "P":
+                    categoriaPlato = "Principal";
+                    break;
+                case "S":
+                    categoriaPlato = "Sopas";
+                    break;
+                case "B":
+                    categoriaPlato = "Bebidas";
+                    break;
+                default:
+                    categoriaPlato = "Principal";
+
+            }
             reg[0] = Integer.toString(p.getIdPlato());
             reg[1] = p.getCodigo();
             reg[2] = p.getNombre();
             reg[3] = p.getDescripcion();
-            reg[4] = p.getCategoriaPlato();
+            reg[4] = categoriaPlato;
             reg[5] = Float.toString(p.getPrecio());
             reg[6] = p.isEstadoPlato() ? "Disponible" : "No disponible";
-            reg[7] = p.getImagenReferencia();
             this.dtm.addRow(reg);
         }
         return this.dtm;
@@ -49,5 +65,9 @@ public class PlatoNegocio {
 
     public String eliminar(Plato plato) {
         return DATOS.eliminar(plato) ? "OK" : "Error en la inserción";
+    }
+
+    public String generarCodigo() {
+        return DATOS.obtenerSiguienteCodigo();
     }
 }

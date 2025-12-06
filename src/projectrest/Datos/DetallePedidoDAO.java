@@ -21,24 +21,25 @@ public class DetallePedidoDAO implements IDetallePedido {
     }
 
     @Override
-    public List<DetallePedido> listar(String texto) {
-        List<DetallePedido> registros = new ArrayList<>();
+    public List<DetallePedido> listar(int id) {
+        List<DetallePedido> registros = new ArrayList();
         try {
-            ps = CNX.conectar().prepareStatement(
-                    "SELECT idDetalle, idPedido, idPlato, cantidad, descuento "
-                    + "FROM DetallePedidos WHERE idPedido LIKE ? ORDER BY idDetalle DESC"
-            );
-            ps.setString(1, "%" + texto + "%");
+            ps = CNX.conectar().prepareStatement("SELECT p.idPlato,p.codigo,p.nombre,p.precio,p.categoriaPlato,d.cantidad,d.descuento,((d.cantidad*p.precio)-d.descuento) as sub_total FROM detallepedido d INNER JOIN plato p ON d.idPlato=p.idPlato WHERE d.idPedido=?");
+            ps.setInt(1, id);
             rs = ps.executeQuery();
-
             while (rs.next()) {
-                registros.add(new DetallePedido(
-                        rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getInt(3),
-                        rs.getInt(4),
-                        rs.getFloat(5)
-                ));
+                registros.add(
+                        new DetallePedido(
+                                rs.getInt(1),
+                                rs.getString(2),
+                                rs.getString(3),
+                                rs.getFloat(4),
+                                rs.getString(5),
+                                rs.getInt(6),
+                                rs.getFloat(7),
+                                rs.getFloat(8)
+                        )
+                );
             }
             ps.close();
             rs.close();

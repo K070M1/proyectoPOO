@@ -13,11 +13,9 @@ import java.util.List;
  */
 public interface IPedido {
 
-    public List<Pedido> listar(int idCliente);
+    public List<Pedido> listar(String cliente);
 
     public boolean insertar(Pedido pedido);
 
-    public boolean eliminar(int idPedido);
-
-    public boolean editar(Pedido pedido);
+    public boolean editarEstado(Pedido pedido);
 }

@@ -19,6 +19,11 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(int idCliente, String nombreCompleto) {
+        this.idCliente = idCliente;
+        this.nombreCompleto = nombreCompleto;
+    }
+
     public Cliente(int idCliente, String nombreCompleto, String categoriaCliente, String correo, String telefono) {
         this.idCliente = idCliente;
         this.nombreCompleto = nombreCompleto;
@@ -69,6 +74,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nombreCompleto=" + nombreCompleto + ", categoriaCliente=" + categoriaCliente + ", correo=" + correo + ", telefono=" + telefono + '}';
+        return nombreCompleto;
     }
 }

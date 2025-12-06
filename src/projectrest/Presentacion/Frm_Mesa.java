@@ -13,7 +13,6 @@ import projectrest.Entidades.Mesa;
  * @author Rafael
  */
 public class Frm_Mesa extends javax.swing.JInternalFrame {
-    private int idUsuario;
     private final MesaNegocio CONTROL;
     private String action;
     private Mesa mesa;
@@ -27,9 +26,7 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
         initComponents();
         this.CONTROL = new MesaNegocio();
         this.listar("");
-        TabMesa.setEnabledAt(0, true);
-        TabMesa.setEnabledAt(1, false);
-        TabMesa.setSelectedIndex(0);
+        this.limpiar(0);
     }
 
     private void listar(String texto) {

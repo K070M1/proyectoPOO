@@ -17,6 +17,11 @@ public class Mesa {
     public Mesa() {
     }
 
+    public Mesa(int idMesa, String nroMesa) {
+        this.idMesa = idMesa;
+        this.nroMesa = nroMesa;
+    }
+
     public Mesa(int idMesa, String nroMesa, int maximoClientes) {
         this.idMesa = idMesa;
         this.nroMesa = nroMesa;
@@ -49,6 +54,6 @@ public class Mesa {
 
     @Override
     public String toString() {
-        return "Mesa{" + "idMesa=" + idMesa + ", nroMesa=" + nroMesa + ", maximoClientes=" + maximoClientes + '}';
+        return nroMesa;
     }
 }

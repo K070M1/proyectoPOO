@@ -25,8 +25,8 @@ public class CalificacionDAO implements ICalificacion {
         List<Calificacion> registros = new ArrayList<>();
         try {
             ps = CNX.conectar().prepareStatement(
-                    "SELECT idCalificacion, idPedido, calificacion, comentarios, fechaCalificacion "
-                    + "FROM Calificaciones WHERE comentarios LIKE ? ORDER BY idCalificacion DESC"
+                    "SELECT c.idCalificacion, c.idPedido, c.calificacion, c.comentarios, c.fechaCalificacion, p.fechaPedido, p.montoTotal, cli.nombreCompleto  "
+                    + "FROM Calificacion c INNER JOIN Pedido p ON p.idPedido = c.idPedido INNER JOIN Cliente cli ON cli.idCliente = p.idCliente WHERE cli.nombreCompleto LIKE ? ORDER BY idCalificacion DESC"
             );
             ps.setString(1, "%" + texto + "%");
             rs = ps.executeQuery();
@@ -37,7 +37,10 @@ public class CalificacionDAO implements ICalificacion {
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getString(4),
-                        rs.getString(5)
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getFloat(7),
+                        rs.getString(8)
                 ));
             }
             ps.close();
@@ -57,12 +60,11 @@ public class CalificacionDAO implements ICalificacion {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "INSERT INTO Calificaciones (idPedido, calificacion, comentarios, fechaCalificacion) VALUES (?,?,?,?)"
+                    "INSERT INTO Calificacion (idPedido, calificacion, comentarios, fechaCalificacion) VALUES (?,?,?,now())"
             );
             ps.setInt(1, calificacion.getIdPedido());
             ps.setInt(2, calificacion.getCalificacion());
             ps.setString(3, calificacion.getComentarios());
-            ps.setString(4, calificacion.getFechaCalificacion());
             ok = ps.executeUpdate() > 0;
             ps.close();
         } catch (SQLException e) {
@@ -79,13 +81,12 @@ public class CalificacionDAO implements ICalificacion {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Calificaciones SET idPedido=?, calificacion=?, comentarios=?, fechaCalificacion=? WHERE idCalificacion=?"
+                    "UPDATE Calificacion SET idPedido=?, calificacion=?, comentarios=? WHERE idCalificacion=?"
             );
             ps.setInt(1, calificacion.getIdPedido());
             ps.setInt(2, calificacion.getCalificacion());
             ps.setString(3, calificacion.getComentarios());
-            ps.setString(4, calificacion.getFechaCalificacion());
-            ps.setInt(5, calificacion.getIdCalificacion());
+            ps.setInt(4, calificacion.getIdCalificacion());
             ok = ps.executeUpdate() > 0;
             ps.close();
         } catch (SQLException e) {
@@ -98,11 +99,11 @@ public class CalificacionDAO implements ICalificacion {
     }
 
     @Override
-    public boolean eliminar(Calificacion calificacion) {
+    public boolean eliminar(int id) {
         boolean ok = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Calificaciones WHERE idCalificacion=?");
-            ps.setInt(1, calificacion.getIdCalificacion());
+            ps = CNX.conectar().prepareStatement("DELETE FROM Calificacion WHERE idCalificacion=?");
+            ps.setInt(1, id);
             ok = ps.executeUpdate() > 0;
             ps.close();
         } catch (SQLException e) {

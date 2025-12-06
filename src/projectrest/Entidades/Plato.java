@@ -22,6 +22,14 @@ public class Plato {
     public Plato() {
     }
 
+    public Plato(int idPlato, String nombre, float precio, String categoriaPlato, String codigo) {
+        this.idPlato = idPlato;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoriaPlato = categoriaPlato;
+        this.codigo = codigo;
+    }
+
     public Plato(int idPlato, String codigo, String nombre, String descripcion, String categoriaPlato, float precio, boolean estadoPlato, String imagenReferencia) {
         this.idPlato = idPlato;
         this.codigo = codigo;
@@ -99,7 +107,22 @@ public class Plato {
 
     @Override
     public String toString() {
-        return "Plato{" + "idPlato=" + idPlato + ", codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", categoriaPlato=" + categoriaPlato + ", precio=" + precio + ", estadoPlato=" + estadoPlato + ", imagenReferencia=" + imagenReferencia + '}';
+        String categoriaP;
+        switch (categoriaPlato) {
+            case "P":
+                categoriaP = "Principal";
+                break;
+            case "S":
+                categoriaP = "Sopas";
+                break;
+            case "B":
+                categoriaP = "Bebidas";
+                break;
+            default:
+                categoriaP = "Principal";
+
+        }
+        return categoriaP + ": " + nombre + ", S/ " + precio;
     }
 
 }

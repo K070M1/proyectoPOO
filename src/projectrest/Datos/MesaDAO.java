@@ -109,4 +109,27 @@ public class MesaDAO implements IMesa {
         }
         return ok;
     }
+
+    public List<Mesa> seleccionar() {
+        List<Mesa> registros = new ArrayList<>();
+        try {
+            ps = CNX.conectar().prepareStatement("SELECT idMesa, nroMesa FROM mesa");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                registros.add(
+                        new Mesa(rs.getInt(1), rs.getString(2))
+                );
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            rs = null;
+            CNX.desconectar();
+        }
+        return registros;
+    }
 }

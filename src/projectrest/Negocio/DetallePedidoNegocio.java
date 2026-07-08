@@ -56,16 +56,4 @@ public class DetallePedidoNegocio {
         }
         return this.dtm;
     }
-
-    public String insertar(DetallePedido detallePedido) {
-        return DATOS.insertar(detallePedido) ? "OK" : "Error en la inserción";
-    }
-
-    public String editar(DetallePedido detallePedido) {
-        return DATOS.editar(detallePedido) ? "OK" : "Error en la inserción";
-    }
-
-    public String eliminar(DetallePedido detallePedido) {
-        return DATOS.eliminar(detallePedido) ? "OK" : "Error en la inserción";
-    }
 }

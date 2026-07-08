@@ -152,7 +152,7 @@ public class EmpleadoDAO implements IEmpleado {
     public String iniciarSesion(String usuario, String clave) {
         String message = "";
         try {
-            ps = CNX.conectar().prepareStatement("SELECT idEmpleado, clave, estado, rol, usuario FROM Empleado WHERE usuario = ?");
+            ps = CNX.conectar().prepareStatement("SELECT idEmpleado, clave, estado, rol, usuario FROM empleado WHERE usuario = ?");
             ps.setString(1, usuario);
             rs = ps.executeQuery();
 

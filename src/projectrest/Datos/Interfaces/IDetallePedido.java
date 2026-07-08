@@ -14,10 +14,4 @@ import java.util.List;
 public interface IDetallePedido {
 
     public List<DetallePedido> listar(int id);
-
-    public boolean insertar(DetallePedido detalle);
-
-    public boolean eliminar(DetallePedido detalle);
-
-    public boolean editar(DetallePedido detalle);
 }

@@ -684,7 +684,7 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
                 this.listar("");
             } else {
                 System.out.println("----> " + resp);
-                JOptionPane.showMessageDialog(null, "Hubo un problema con el proceso..!", title_s, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, resp, title_s, JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_BtnGuardarActionPerformed

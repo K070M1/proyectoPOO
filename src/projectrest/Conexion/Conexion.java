@@ -19,7 +19,7 @@ public class Conexion {
     private final String URL = "jdbc:mysql://localhost:3306/";
     private final String DB = "db_rest";
     private final String USER_DB = "root";
-    private final String PASSWORD_DB = "TU_CLAVE";
+    private final String PASSWORD_DB = "123456";
 
     public Connection cnx;
 

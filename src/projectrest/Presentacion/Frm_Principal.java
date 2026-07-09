@@ -6,6 +6,7 @@ package projectrest.Presentacion;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import projectrest.Entidades.Session.Session;
 
 /**
@@ -49,7 +50,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         this.main_frame = frm;
         Principal.add(frm);
         frm.setVisible(true);
-        this.centerInternalFrame(frm);
+        SwingUtilities.invokeLater(() -> centerInternalFrame(frm));
     }
 
     public boolean sessionActived() {
@@ -71,6 +72,8 @@ public class Frm_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         Principal = new javax.swing.JDesktopPane();
+        Sidebar = new javax.swing.JPanel();
+        Logo = new javax.swing.JLabel();
         MnPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenMesas = new javax.swing.JMenuItem();
@@ -85,6 +88,32 @@ public class Frm_Principal extends javax.swing.JFrame {
         MenSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Principal.setBackground(new java.awt.Color(255, 255, 255));
+        Principal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Principal.setDragMode(javax.swing.JDesktopPane.OUTLINE_DRAG_MODE);
+
+        Sidebar.setBackground(new java.awt.Color(176, 13, 13));
+        Sidebar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Fondos/LogoAlternativo.png"))); // NOI18N
+
+        javax.swing.GroupLayout SidebarLayout = new javax.swing.GroupLayout(Sidebar);
+        Sidebar.setLayout(SidebarLayout);
+        SidebarLayout.setHorizontalGroup(
+            SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SidebarLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(Logo)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        SidebarLayout.setVerticalGroup(
+            SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SidebarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Logo)
+                .addContainerGap(602, Short.MAX_VALUE))
+        );
 
         MnPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnPrincipal.setMaximumSize(new java.awt.Dimension(379, 32768));
@@ -187,13 +216,16 @@ public class Frm_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(Sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(Sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Principal)
         );
 
         pack();
@@ -282,6 +314,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Logo;
     private javax.swing.JMenuItem MenCalificacion;
     private javax.swing.JMenuItem MenClientes;
     private javax.swing.JMenuItem MenEmpleados;
@@ -292,6 +325,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnPedido;
     private javax.swing.JMenuBar MnPrincipal;
     private javax.swing.JDesktopPane Principal;
+    private javax.swing.JPanel Sidebar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

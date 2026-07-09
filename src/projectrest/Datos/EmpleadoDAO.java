@@ -166,7 +166,7 @@ public class EmpleadoDAO implements IEmpleado {
                 if (estado) {
                     String clave_ing_hash = hashing(clave);
                     if (pass.equals(clave_ing_hash)) {
-                        message = id + "|" + user + "|" + rol;
+                        message = id + "|" + user + "|" + rol; // Dejar esto
                     } else {
                         message = "ERROR LOGIN: Clave no válida..!";
                     }

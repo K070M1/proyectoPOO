@@ -137,35 +137,57 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
 
         LblBuscar.setText("Buscar:");
 
+        TxtBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        BtnBuscar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         BtnBuscar.setText("Buscar");
+        BtnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
             }
         });
 
+        BtnNuevo.setBackground(new java.awt.Color(176, 13, 13));
+        BtnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         BtnNuevo.setText("Nuevo");
+        BtnNuevo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnNuevoActionPerformed(evt);
             }
         });
 
+        BtnEditar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEditar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEditar.setText("Editar");
+        BtnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEditarActionPerformed(evt);
             }
         });
 
+        BtnEliminar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEliminar.setText("Eliminar");
+        BtnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
             }
         });
 
+        BtnCredencials.setBackground(new java.awt.Color(176, 13, 13));
+        BtnCredencials.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCredencials.setForeground(new java.awt.Color(255, 255, 255));
         BtnCredencials.setText("Credenciales");
+        BtnCredencials.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnCredencials.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCredencialsActionPerformed(evt);
@@ -185,15 +207,15 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(BtnBuscar)
+                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnCredencials)
-                        .addGap(33, 33, 33)
-                        .addComponent(BtnEliminar)
+                        .addComponent(BtnCredencials, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnEditar)
+                        .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnNuevo)))
+                        .addComponent(BtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -209,7 +231,7 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
                     .addComponent(BtnEliminar)
                     .addComponent(BtnCredencials))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -217,30 +239,46 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Nombre completo:");
 
+        TxtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel2.setText("Rol:");
 
         CbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CbRol.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setText("Tipo de documento:");
 
         CbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CbTipo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setText("Documento:");
+
+        TxtDocumento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setText("Turno:");
 
         CbTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CbTurno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         ChkEstado.setText("Se encuentra Activo");
+        ChkEstado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        BtnCancelar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarActionPerformed(evt);
             }
         });
 
+        BtnGuardar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         BtnGuardar.setText("Guardar");
+        BtnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnGuardarActionPerformed(evt);
@@ -261,21 +299,19 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(BtnCancelar))
+                            .addComponent(jLabel5))
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnGuardar))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(CbTurno, javax.swing.GroupLayout.Alignment.LEADING, 0, 179, Short.MAX_VALUE)
-                                        .addComponent(TxtDocumento, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(CbTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(CbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                            .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(CbTurno, javax.swing.GroupLayout.Alignment.LEADING, 0, 179, Short.MAX_VALUE)
+                                .addComponent(TxtDocumento, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CbTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(360, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -307,45 +343,62 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCancelar)
                     .addComponent(BtnGuardar))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         TabEmpleado.addTab("Formulario", jPanel2);
 
         jLabel6.setText("Usuario:");
 
+        TxtUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel7.setText("Nueva clave:");
 
+        BtnCancelarC.setBackground(new java.awt.Color(176, 13, 13));
+        BtnCancelarC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCancelarC.setForeground(new java.awt.Color(255, 255, 255));
         BtnCancelarC.setText("Cancelar");
+        BtnCancelarC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnCancelarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarCActionPerformed(evt);
             }
         });
 
+        BtnGuardarC.setBackground(new java.awt.Color(176, 13, 13));
+        BtnGuardarC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnGuardarC.setForeground(new java.awt.Color(255, 255, 255));
         BtnGuardarC.setText("Guardar credenciales");
+        BtnGuardarC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnGuardarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnGuardarCActionPerformed(evt);
             }
         });
 
+        TxtClave.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(BtnCancelarC))
-                .addGap(24, 24, 24)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnCancelarC, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnGuardarC)
                     .addComponent(TxtUsuario)
-                    .addComponent(TxtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
-                .addContainerGap(531, Short.MAX_VALUE))
+                    .addComponent(TxtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(BtnGuardarC, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(540, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,11 +411,11 @@ public class Frm_Empleado extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(TxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117)
+                .addGap(62, 62, 62)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnCancelarC)
-                    .addComponent(BtnGuardarC))
-                .addContainerGap(315, Short.MAX_VALUE))
+                    .addComponent(BtnGuardarC)
+                    .addComponent(BtnCancelarC))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
 
         TabEmpleado.addTab("Credenciales", jPanel3);

@@ -27,7 +27,7 @@ public class ComprobanteDAO implements IComprobante {
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT idComprobante, idPedido, serie, correlativo, tipoComprobante "
-                    + "FROM Comprobantes "
+                    + "FROM comprobantes "
                     + "WHERE serie LIKE ? OR tipoComprobante LIKE ? "
                     + "ORDER BY idComprobante DESC"
             );
@@ -61,7 +61,7 @@ public class ComprobanteDAO implements IComprobante {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "INSERT INTO Comprobantes (idPedido, serie, correlativo, tipoComprobante) VALUES (?,?,?,?)"
+                    "INSERT INTO comprobantes (idPedido, serie, correlativo, tipoComprobante) VALUES (?,?,?,?)"
             );
             ps.setInt(1, comprobante.getIdPedido());
             ps.setString(2, comprobante.getSerie());
@@ -82,7 +82,7 @@ public class ComprobanteDAO implements IComprobante {
     public boolean eliminar(Comprobante comprobante) {
         boolean ok = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Comprobantes WHERE idComprobante = ?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM comprobantes WHERE idComprobante = ?");
             ps.setInt(1, comprobante.getIdComprobante());
             ok = ps.executeUpdate() > 0;
             ps.close();
@@ -100,7 +100,7 @@ public class ComprobanteDAO implements IComprobante {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Comprobantes SET idPedido = ?, serie = ?, correlativo = ?, tipoComprobante = ? "
+                    "UPDATE comprobantes SET idPedido = ?, serie = ?, correlativo = ?, tipoComprobante = ? "
                     + "WHERE idComprobante = ?"
             );
             ps.setInt(1, comprobante.getIdPedido());

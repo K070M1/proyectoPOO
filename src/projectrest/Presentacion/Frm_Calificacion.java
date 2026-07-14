@@ -99,13 +99,18 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Formulario de Calificaciones");
 
+        TxtBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         TxtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtBuscarActionPerformed(evt);
             }
         });
 
+        BtnBuscar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         BtnBuscar.setText("Buscar");
+        BtnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
@@ -122,21 +127,33 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(TblCalificaciones);
 
+        BtnNuevo.setBackground(new java.awt.Color(176, 13, 13));
+        BtnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         BtnNuevo.setText("Nuevo");
+        BtnNuevo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnNuevoActionPerformed(evt);
             }
         });
 
+        BtnEditar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEditar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEditar.setText("Editar");
+        BtnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEditarActionPerformed(evt);
             }
         });
 
+        BtnEliminar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEliminar.setText("Eliminar");
+        BtnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
@@ -149,18 +166,18 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(BtnBuscar)
-                        .addGap(127, 127, 127)
-                        .addComponent(BtnEliminar)
-                        .addGap(12, 12, 12)
-                        .addComponent(BtnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnNuevo)))
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112)
+                        .addComponent(BtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -173,7 +190,7 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
                     .addComponent(BtnEliminar)
                     .addComponent(BtnEditar)
                     .addComponent(BtnNuevo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
@@ -183,6 +200,7 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
         jLabel1.setText("Pedido:");
 
         TxtPedidoLabel.setEditable(false);
+        TxtPedidoLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         TxtPedidoLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtPedidoLabelActionPerformed(evt);
@@ -192,6 +210,7 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
         jLabel2.setText("Calificación:");
 
         CmbCalificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "1", "2", "3", "4", "5" }));
+        CmbCalificacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CmbCalificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbCalificacionActionPerformed(evt);
@@ -202,6 +221,7 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
 
         TxtComentarios.setColumns(20);
         TxtComentarios.setRows(5);
+        TxtComentarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         TxtComentarios.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 TxtComentariosAncestorAdded(evt);
@@ -213,21 +233,33 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(TxtComentarios);
 
+        BtnGuardar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         BtnGuardar.setText("Guardar");
+        BtnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnGuardarActionPerformed(evt);
             }
         });
 
+        BtnCancelar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarActionPerformed(evt);
             }
         });
 
+        BtnSeleccionarPedido.setBackground(new java.awt.Color(176, 13, 13));
+        BtnSeleccionarPedido.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnSeleccionarPedido.setForeground(new java.awt.Color(255, 255, 255));
         BtnSeleccionarPedido.setText("Seleccionar");
+        BtnSeleccionarPedido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnSeleccionarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSeleccionarPedidoActionPerformed(evt);
@@ -235,6 +267,7 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
         });
 
         TxtIdPedido.setEditable(false);
+        TxtIdPedido.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -246,8 +279,8 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,14 +292,14 @@ public class Frm_Calificacion extends javax.swing.JInternalFrame {
                                         .addComponent(TxtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(TxtPedidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                                        .addComponent(BtnSeleccionarPedido))))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BtnSeleccionarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BtnGuardar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnCancelar)))
+                                .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(44, 44, 44))))
         );
         jPanel2Layout.setVerticalGroup(

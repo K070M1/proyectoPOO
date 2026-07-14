@@ -26,7 +26,7 @@ public class PlatoDAO implements IPlato {
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT idPlato, codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia "
-                    + "FROM Plato WHERE nombre LIKE ? OR codigo LIKE ? OR categoriaPlato LIKE ? ORDER BY idPlato DESC"
+                    + "FROM plato WHERE nombre LIKE ? OR codigo LIKE ? OR categoriaPlato LIKE ? ORDER BY idPlato DESC"
             );
             ps.setString(1, "%" + texto + "%");
             ps.setString(2, "%" + texto + "%");
@@ -62,7 +62,7 @@ public class PlatoDAO implements IPlato {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "INSERT INTO Plato (codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia) VALUES (?,?,?,?,?,?,?)"
+                    "INSERT INTO plato (codigo, nombre, descripcion, categoriaPlato, precio, estadoPlato, imagenReferencia) VALUES (?,?,?,?,?,?,?)"
             );
             ps.setString(1, plato.getCodigo());
             ps.setString(2, plato.getNombre());
@@ -87,7 +87,7 @@ public class PlatoDAO implements IPlato {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Plato SET codigo=?, nombre=?, descripcion=?, categoriaPlato=?, precio=?, estadoPlato=?, imagenReferencia=? WHERE idPlato=?"
+                    "UPDATE plato SET codigo=?, nombre=?, descripcion=?, categoriaPlato=?, precio=?, estadoPlato=?, imagenReferencia=? WHERE idPlato=?"
             );
             ps.setString(1, plato.getCodigo());
             ps.setString(2, plato.getNombre());
@@ -112,7 +112,7 @@ public class PlatoDAO implements IPlato {
     public boolean eliminar(Plato plato) {
         boolean ok = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Plato WHERE idPlato=?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM plato WHERE idPlato=?");
             ps.setInt(1, plato.getIdPlato());
             ok = ps.executeUpdate() > 0;
             ps.close();

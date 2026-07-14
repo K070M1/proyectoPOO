@@ -27,7 +27,7 @@ public class EmpleadoDAO implements IEmpleado {
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT idEmpleado, nombreCompleto, rol, tipoDocumento, documento, usuario, clave, turno, estado, fechaIngreso, fechaSalida "
-                    + "FROM Empleado WHERE nombreCompleto LIKE ? OR usuario LIKE ? ORDER BY idEmpleado DESC"
+                    + "FROM empleado WHERE nombreCompleto LIKE ? OR usuario LIKE ? ORDER BY idEmpleado DESC"
             );
             ps.setString(1, "%" + texto + "%");
             ps.setString(2, "%" + texto + "%");
@@ -65,7 +65,7 @@ public class EmpleadoDAO implements IEmpleado {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "INSERT INTO Empleado (nombreCompleto, rol, tipoDocumento, documento, turno, estado, fechaIngreso) VALUES (?,?,?,?,?,?, NOW())"
+                    "INSERT INTO empleado (nombreCompleto, rol, tipoDocumento, documento, turno, estado, fechaIngreso) VALUES (?,?,?,?,?,?, NOW())"
             );
             ps.setString(1, empleado.getNombreCompleto());
             ps.setString(2, empleado.getRol());
@@ -89,7 +89,7 @@ public class EmpleadoDAO implements IEmpleado {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Empleado SET nombreCompleto=?, rol=?, tipoDocumento=?, documento=?, turno=?, estado=? WHERE idEmpleado=?"
+                    "UPDATE empleado SET nombreCompleto=?, rol=?, tipoDocumento=?, documento=?, turno=?, estado=? WHERE idEmpleado=?"
             );
             ps.setString(1, empleado.getNombreCompleto());
             ps.setString(2, empleado.getRol());
@@ -116,7 +116,7 @@ public class EmpleadoDAO implements IEmpleado {
     public boolean eliminar(Empleado empleado) {
         boolean ok = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Empleado WHERE idEmpleado=?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM empleado WHERE idEmpleado=?");
             ps.setInt(1, empleado.getIdEmpleado());
             ok = ps.executeUpdate() > 0;
             ps.close();
@@ -133,7 +133,7 @@ public class EmpleadoDAO implements IEmpleado {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Empleado SET usuario=?, clave=? WHERE idEmpleado=?"
+                    "UPDATE empleado SET usuario=?, clave=? WHERE idEmpleado=?"
             );
             ps.setString(1, empleado.getUsuario());
             ps.setString(2, this.hashing(empleado.getClave()));

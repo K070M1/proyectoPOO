@@ -82,7 +82,13 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
 
         LblBuscar.setText("Buscar:");
 
+        TxtBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        BtnBuscar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         BtnBuscar.setText("Buscar");
+        BtnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
@@ -99,21 +105,33 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(TblMesa);
 
+        BtnNuevo.setBackground(new java.awt.Color(176, 13, 13));
+        BtnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         BtnNuevo.setText("Nuevo");
+        BtnNuevo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnNuevoActionPerformed(evt);
             }
         });
 
+        BtnEditar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEditar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEditar.setText("Editar");
+        BtnEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEditarActionPerformed(evt);
             }
         });
 
+        BtnEliminar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEliminar.setText("Eliminar");
+        BtnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarActionPerformed(evt);
@@ -128,16 +146,15 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(LblBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnBuscar)
+                .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnEliminar)
+                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnEditar)
+                .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnNuevo)
-                .addContainerGap())
+                .addComponent(BtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,22 +177,33 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
 
         LblNro.setText("N° de Mesa:");
 
+        TxtNro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         LblMaximo.setText("Máximo de Clientes:");
 
+        TxtMaximo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         TxtMaximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtMaximoActionPerformed(evt);
             }
         });
 
+        BtnGuardar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         BtnGuardar.setText("Guardar");
+        BtnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnGuardarActionPerformed(evt);
             }
         });
 
+        BtnCerrar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCerrar.setText("Cerrar");
+        BtnCerrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCerrarActionPerformed(evt);
@@ -190,21 +218,23 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(BtnGuardar)
-                        .addGap(32, 32, 32)
-                        .addComponent(BtnCerrar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(LblMaximo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                .addComponent(TxtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TxtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(LblNro)
-                                .addGap(66, 66, 66)
-                                .addComponent(TxtNro)))
-                        .addGap(385, 385, 385))))
+                                .addGap(53, 53, 53)
+                                .addComponent(TxtNro, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                                .addGap(13, 13, 13)))
+                        .addGap(385, 385, 385))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,11 +247,11 @@ public class Frm_Mesa extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblMaximo)
                     .addComponent(TxtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(105, 105, 105)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnGuardar)
                     .addComponent(BtnCerrar))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(301, Short.MAX_VALUE))
         );
 
         TabMesa.addTab("Formulario", jPanel2);

@@ -292,35 +292,57 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Buscar cliente:");
 
+        TxtBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        BtnBuscar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         BtnBuscar.setText("Buscar");
+        BtnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
             }
         });
 
+        BtnNuevo.setBackground(new java.awt.Color(176, 13, 13));
+        BtnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         BtnNuevo.setText("Nuevo");
+        BtnNuevo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnNuevoActionPerformed(evt);
             }
         });
 
+        BtnVer.setBackground(new java.awt.Color(176, 13, 13));
+        BtnVer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnVer.setForeground(new java.awt.Color(255, 255, 255));
         BtnVer.setText("Ver");
+        BtnVer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnVerActionPerformed(evt);
             }
         });
 
+        BtnAnular.setBackground(new java.awt.Color(176, 13, 13));
+        BtnAnular.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnAnular.setForeground(new java.awt.Color(255, 255, 255));
         BtnAnular.setText("Anular");
+        BtnAnular.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnAnular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAnularActionPerformed(evt);
             }
         });
 
+        BtnReactivar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnReactivar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnReactivar.setForeground(new java.awt.Color(255, 255, 255));
         BtnReactivar.setText("Reactivar");
+        BtnReactivar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnReactivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnReactivarActionPerformed(evt);
@@ -340,15 +362,15 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(BtnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                        .addComponent(BtnReactivar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnAnular)
-                        .addGap(34, 34, 34)
-                        .addComponent(BtnVer)
+                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                        .addComponent(BtnReactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnNuevo)))
+                        .addComponent(BtnAnular, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(BtnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -365,14 +387,20 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
                     .addComponent(BtnReactivar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         TabPedido.addTab("Listado", jPanel1);
 
         jLabel2.setText("Cliente (*):");
 
+        CmbCliente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        BtnCliente.setBackground(new java.awt.Color(176, 13, 13));
+        BtnCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCliente.setForeground(new java.awt.Color(255, 255, 255));
         BtnCliente.setText("Buscar cliente");
+        BtnCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnClienteActionPerformed(evt);
@@ -382,6 +410,11 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
         jLabel3.setText("Comprobante(*):");
 
         CmbComprobante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nota", "Boleta", "Factura" }));
+        CmbComprobante.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        TxtCorrelativo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        TxtSerie.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setText("Serie (*):");
 
@@ -391,18 +424,29 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
 
         TxtMonto.setEditable(false);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("-- Detalles del Pedido --");
 
         jLabel8.setText("Platos:");
 
+        CmbPlato.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        BtnPlato.setBackground(new java.awt.Color(176, 13, 13));
+        BtnPlato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnPlato.setForeground(new java.awt.Color(255, 255, 255));
         BtnPlato.setText("Buscar platos");
+        BtnPlato.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnPlato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPlatoActionPerformed(evt);
             }
         });
 
+        BtnEliminarPlato.setBackground(new java.awt.Color(176, 13, 13));
+        BtnEliminarPlato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEliminarPlato.setForeground(new java.awt.Color(255, 255, 255));
         BtnEliminarPlato.setText("Quitar plato");
+        BtnEliminarPlato.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnEliminarPlato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEliminarPlatoActionPerformed(evt);
@@ -423,14 +467,22 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
 
         jLabel10.setText("- Los campos marcados con (*) , son obligatorios");
 
+        BtnGuardar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         BtnGuardar.setText("Guardar");
+        BtnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnGuardarActionPerformed(evt);
             }
         });
 
+        BtnCancelar.setBackground(new java.awt.Color(176, 13, 13));
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancelarActionPerformed(evt);
@@ -441,16 +493,25 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Mesa (*):");
 
+        CmbMesa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel13.setText("Empleado(*):");
 
+        CmbEmpleado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         ChkEmpleado.setText("Empleado actual");
+        ChkEmpleado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ChkEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChkEmpleadoActionPerformed(evt);
             }
         });
 
+        BtnSeleccionarPlato.setBackground(new java.awt.Color(176, 13, 13));
+        BtnSeleccionarPlato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnSeleccionarPlato.setForeground(new java.awt.Color(255, 255, 255));
         BtnSeleccionarPlato.setText("Seleccionar plato");
+        BtnSeleccionarPlato.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnSeleccionarPlato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSeleccionarPlatoActionPerformed(evt);
@@ -479,8 +540,8 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(CmbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnCliente))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(TxtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -503,32 +564,34 @@ public class Frm_Pedido extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ChkEmpleado))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(CmbPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnSeleccionarPlato)
-                        .addGap(27, 27, 27)
-                        .addComponent(BtnPlato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnEliminarPlato))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(402, 402, 402)
-                                .addComponent(BtnCancelar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnGuardar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(TxtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnEliminarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(CmbPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(BtnSeleccionarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );

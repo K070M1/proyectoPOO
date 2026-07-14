@@ -26,7 +26,7 @@ public class CalificacionDAO implements ICalificacion {
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT c.idCalificacion, c.idPedido, c.calificacion, c.comentarios, c.fechaCalificacion, p.fechaPedido, p.montoTotal, cli.nombreCompleto  "
-                    + "FROM Calificacion c INNER JOIN Pedido p ON p.idPedido = c.idPedido INNER JOIN Cliente cli ON cli.idCliente = p.idCliente WHERE cli.nombreCompleto LIKE ? ORDER BY idCalificacion DESC"
+                    + "FROM calificacion c INNER JOIN pedido p ON p.idPedido = c.idPedido INNER JOIN cliente cli ON cli.idCliente = p.idCliente WHERE cli.nombreCompleto LIKE ? ORDER BY idCalificacion DESC"
             );
             ps.setString(1, "%" + texto + "%");
             rs = ps.executeQuery();
@@ -60,7 +60,7 @@ public class CalificacionDAO implements ICalificacion {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "INSERT INTO Calificacion (idPedido, calificacion, comentarios, fechaCalificacion) VALUES (?,?,?,now())"
+                    "INSERT INTO calificacion (idPedido, calificacion, comentarios, fechaCalificacion) VALUES (?,?,?,now())"
             );
             ps.setInt(1, calificacion.getIdPedido());
             ps.setInt(2, calificacion.getCalificacion());
@@ -81,7 +81,7 @@ public class CalificacionDAO implements ICalificacion {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Calificacion SET idPedido=?, calificacion=?, comentarios=? WHERE idCalificacion=?"
+                    "UPDATE calificacion SET idPedido=?, calificacion=?, comentarios=? WHERE idCalificacion=?"
             );
             ps.setInt(1, calificacion.getIdPedido());
             ps.setInt(2, calificacion.getCalificacion());
@@ -102,7 +102,7 @@ public class CalificacionDAO implements ICalificacion {
     public boolean eliminar(int id) {
         boolean ok = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Calificacion WHERE idCalificacion=?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM calificacion WHERE idCalificacion=?");
             ps.setInt(1, id);
             ok = ps.executeUpdate() > 0;
             ps.close();

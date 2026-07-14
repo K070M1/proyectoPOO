@@ -4,6 +4,7 @@
  */
 package projectrest.Presentacion;
 
+import java.awt.Color;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -35,10 +36,20 @@ public class Frm_Principal extends javax.swing.JFrame {
         this.visibleFrame(frm);
     }
 
+    private void acomodarImagen() {
+        int margen = -35;
+
+        FondoImagen.setLocation(
+                Principal.getWidth() - FondoImagen.getWidth() - margen,
+                Principal.getHeight() - FondoImagen.getHeight() - margen
+        );
+    }
+
     public void centerInternalFrame(JInternalFrame internalFrame) {
         int x = (Principal.getWidth() - internalFrame.getWidth()) / 2;
         int y = (Principal.getHeight() - internalFrame.getHeight()) / 2;
         internalFrame.setLocation(x, y);
+
     }
 
     // Vista SINGLETON
@@ -48,9 +59,14 @@ public class Frm_Principal extends javax.swing.JFrame {
             Principal.remove(this.main_frame);
         }
         this.main_frame = frm;
+        Principal.setOpaque(true);
+        Principal.setBackground(new Color(250, 240, 220));
         Principal.add(frm);
         frm.setVisible(true);
-        SwingUtilities.invokeLater(() -> centerInternalFrame(frm));
+        SwingUtilities.invokeLater(() -> {
+            centerInternalFrame(frm);
+            acomodarImagen();
+        });
     }
 
     public boolean sessionActived() {
@@ -71,32 +87,120 @@ public class Frm_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         Principal = new javax.swing.JDesktopPane();
+        FondoImagen = new javax.swing.JLabel();
         Sidebar = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
-        MnPrincipal = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        MenMesas = new javax.swing.JMenuItem();
-        MenPlatos = new javax.swing.JMenuItem();
-        MenClientes = new javax.swing.JMenuItem();
-        MenEmpleados = new javax.swing.JMenuItem();
-        MenPedidos = new javax.swing.JMenu();
-        MnPedido = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        MenCalificacion = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        MenSalir = new javax.swing.JMenuItem();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Principal.setBackground(new java.awt.Color(255, 255, 255));
+        Principal.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.hoverBackground"));
         Principal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Principal.setDragMode(javax.swing.JDesktopPane.OUTLINE_DRAG_MODE);
+
+        FondoImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Fondos/polloFondo.png"))); // NOI18N
+        FondoImagen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Principal.add(FondoImagen);
+        FondoImagen.setBounds(1800, 1900, 400, 225);
 
         Sidebar.setBackground(new java.awt.Color(176, 13, 13));
         Sidebar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Fondos/LogoAlternativo.png"))); // NOI18N
+
+        jButton1.setBackground(new java.awt.Color(120, 13, 13));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Plato.png"))); // NOI18N
+        jButton1.setText("Platos");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(120, 13, 13));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Cliente.jpg"))); // NOI18N
+        jButton2.setText("Clientes");
+        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(120, 13, 13));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Empleados.png"))); // NOI18N
+        jButton3.setText("Empleados");
+        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(120, 13, 13));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Mesa.png"))); // NOI18N
+        jButton5.setText("Mesas");
+        jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(120, 13, 13));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Pedido.png"))); // NOI18N
+        jButton6.setText("Pedidos");
+        jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setBackground(new java.awt.Color(120, 13, 13));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Calificaciones.png"))); // NOI18N
+        jButton7.setText("Calificaciones");
+        jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setBackground(new java.awt.Color(120, 13, 13));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Salir.png"))); // NOI18N
+        jButton8.setText("Salir ");
+        jButton8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SidebarLayout = new javax.swing.GroupLayout(Sidebar);
         Sidebar.setLayout(SidebarLayout);
@@ -105,112 +209,40 @@ public class Frm_Principal extends javax.swing.JFrame {
             .addGroup(SidebarLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(Logo)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SidebarLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         SidebarLayout.setVerticalGroup(
             SidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SidebarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Logo)
-                .addContainerGap(602, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton7)
+                .addGap(42, 42, 42)
+                .addComponent(jButton8)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
-
-        MnPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MnPrincipal.setMaximumSize(new java.awt.Dimension(379, 32768));
-        MnPrincipal.setMinimumSize(new java.awt.Dimension(379, 39));
-        MnPrincipal.setPreferredSize(new java.awt.Dimension(379, 39));
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Maestro.png"))); // NOI18N
-        jMenu1.setText("Maestros");
-
-        MenMesas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Mesa.png"))); // NOI18N
-        MenMesas.setText("Mesas");
-        MenMesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenMesasActionPerformed(evt);
-            }
-        });
-        jMenu1.add(MenMesas);
-
-        MenPlatos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenPlatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Plato.png"))); // NOI18N
-        MenPlatos.setText("Platos");
-        MenPlatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenPlatosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(MenPlatos);
-
-        MenClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Cliente.jpg"))); // NOI18N
-        MenClientes.setText("Clientes");
-        MenClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenClientesActionPerformed(evt);
-            }
-        });
-        jMenu1.add(MenClientes);
-
-        MenEmpleados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Empleados.png"))); // NOI18N
-        MenEmpleados.setText("Empleados");
-        MenEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenEmpleadosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(MenEmpleados);
-
-        MnPrincipal.add(jMenu1);
-
-        MenPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Venta.png"))); // NOI18N
-        MenPedidos.setText("Pedidos");
-
-        MnPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Pedido.png"))); // NOI18N
-        MnPedido.setText("Módulo de Pedidos");
-        MnPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnPedidoActionPerformed(evt);
-            }
-        });
-        MenPedidos.add(MnPedido);
-
-        MnPrincipal.add(MenPedidos);
-
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Calificaciones.png"))); // NOI18N
-        jMenu3.setText("Calificaciones");
-
-        MenCalificacion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenCalificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Calificacion.png"))); // NOI18N
-        MenCalificacion.setText("Módulo de Calificación");
-        MenCalificacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenCalificacionActionPerformed(evt);
-            }
-        });
-        jMenu3.add(MenCalificacion);
-
-        MnPrincipal.add(jMenu3);
-
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Cerrar.png"))); // NOI18N
-        jMenu4.setText("Cerrar");
-
-        MenSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        MenSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectrest/Presentacion/Imagenes/Salir.png"))); // NOI18N
-        MenSalir.setText("Salir del Sistema");
-        MenSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenSalirActionPerformed(evt);
-            }
-        });
-        jMenu4.add(MenSalir);
-
-        MnPrincipal.add(jMenu4);
-
-        setJMenuBar(MnPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -225,58 +257,60 @@ public class Frm_Principal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Principal)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Principal)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MenEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenEmpleadosActionPerformed
-        if (this.sessionActived()) {
-            Frm_Empleado frm = new Frm_Empleado();
-            this.visibleFrame(frm);
-        }
-
-    }//GEN-LAST:event_MenEmpleadosActionPerformed
-
-    private void MenSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_MenSalirActionPerformed
-
-    private void MenMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenMesasActionPerformed
-        if (this.sessionActived()) {
-            Frm_Mesa frm = new Frm_Mesa();
-            this.visibleFrame(frm);
-        }
-    }//GEN-LAST:event_MenMesasActionPerformed
-
-    private void MenClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenClientesActionPerformed
-        if (this.sessionActived()) {
-            Frm_Cliente frm = new Frm_Cliente();
-            this.visibleFrame(frm);
-        }
-    }//GEN-LAST:event_MenClientesActionPerformed
-
-    private void MenPlatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenPlatosActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (this.sessionActived()) {
             Frm_Plato frm = new Frm_Plato();
             this.visibleFrame(frm);
         }
-    }//GEN-LAST:event_MenPlatosActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void MnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPedidoActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (this.sessionActived()) {
+            Frm_Cliente frm = new Frm_Cliente();
+            this.visibleFrame(frm);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (this.sessionActived()) {
+            Frm_Empleado frm = new Frm_Empleado();
+            this.visibleFrame(frm);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (this.sessionActived()) {
+            Frm_Mesa frm = new Frm_Mesa();
+            this.visibleFrame(frm);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (this.sessionActived()) {
             Frm_Pedido frm = new Frm_Pedido(this);
             this.visibleFrame(frm);
         }
-    }//GEN-LAST:event_MnPedidoActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void MenCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenCalificacionActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         if (this.sessionActived()) {
             Frm_Calificacion frm = new Frm_Calificacion(this);
             this.visibleFrame(frm);
         }
-    }//GEN-LAST:event_MenCalificacionActionPerformed
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,21 +348,18 @@ public class Frm_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FondoImagen;
     private javax.swing.JLabel Logo;
-    private javax.swing.JMenuItem MenCalificacion;
-    private javax.swing.JMenuItem MenClientes;
-    private javax.swing.JMenuItem MenEmpleados;
-    private javax.swing.JMenuItem MenMesas;
-    private javax.swing.JMenu MenPedidos;
-    private javax.swing.JMenuItem MenPlatos;
-    private javax.swing.JMenuItem MenSalir;
-    private javax.swing.JMenuItem MnPedido;
-    private javax.swing.JMenuBar MnPrincipal;
     private javax.swing.JDesktopPane Principal;
     private javax.swing.JPanel Sidebar;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
 }

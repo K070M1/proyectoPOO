@@ -24,7 +24,7 @@ public class ClienteDAO implements ICliente {
     public List<Cliente> listar(String texto) {
         List<Cliente> registros = new ArrayList<>();
         try {
-            ps = CNX.conectar().prepareStatement("SELECT * FROM Cliente WHERE nombreCompleto LIKE ?");
+            ps = CNX.conectar().prepareStatement("SELECT * FROM cliente WHERE nombreCompleto LIKE ?");
             ps.setString(1, "%" + texto + "%");
             rs = ps.executeQuery();
 
@@ -54,7 +54,7 @@ public class ClienteDAO implements ICliente {
     public boolean insertar(Cliente cliente) {
         confirmacion = false;
         try {
-            ps = CNX.conectar().prepareStatement("INSERT INTO Cliente (nombreCompleto, categoriaCliente, correo, telefono) VALUES (?,?,?,?)");
+            ps = CNX.conectar().prepareStatement("INSERT INTO cliente (nombreCompleto, categoriaCliente, correo, telefono) VALUES (?,?,?,?)");
             ps.setString(1, cliente.getNombreCompleto());
             ps.setString(2, cliente.getCategoriaCliente());
             ps.setString(3, cliente.getCorreo());
@@ -74,7 +74,7 @@ public class ClienteDAO implements ICliente {
     public boolean editar(Cliente cliente) {
         confirmacion = false;
         try {
-            ps = CNX.conectar().prepareStatement("UPDATE Cliente SET nombreCompleto = ?, categoriaCliente = ?, correo = ?, telefono = ? WHERE idCliente = ?");
+            ps = CNX.conectar().prepareStatement("UPDATE cliente SET nombreCompleto = ?, categoriaCliente = ?, correo = ?, telefono = ? WHERE idCliente = ?");
             ps.setString(1, cliente.getNombreCompleto());
             ps.setString(2, cliente.getCategoriaCliente());
             ps.setString(3, cliente.getCorreo());
@@ -95,7 +95,7 @@ public class ClienteDAO implements ICliente {
     public boolean eliminar(int idCliente) {
         confirmacion = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Cliente WHERE idCliente = ?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM cliente WHERE idCliente = ?");
             ps.setInt(1, idCliente);
             confirmacion = ps.executeUpdate() > 0 || false;
             ps.close();
@@ -111,7 +111,7 @@ public class ClienteDAO implements ICliente {
     public Cliente buscarPorId(int idCliente) {
         Cliente client = new Cliente();
         try {
-            ps = CNX.conectar().prepareStatement("SELEC * FROM Cliente WHERE idCliente = ?");
+            ps = CNX.conectar().prepareStatement("SELEC * FROM cliente WHERE idCliente = ?");
             ps.setInt(1, idCliente);
             rs = ps.executeQuery();
 

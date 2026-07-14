@@ -26,7 +26,7 @@ public class MesaDAO implements IMesa {
         try {
             ps = CNX.conectar().prepareStatement(
                     "SELECT idMesa, nroMesa, maximoClientes "
-                    + "FROM Mesa "
+                    + "FROM mesa "
                     + "WHERE nroMesa LIKE ? "
                     + "ORDER BY idMesa DESC"
             );
@@ -57,7 +57,7 @@ public class MesaDAO implements IMesa {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "INSERT INTO Mesa (nroMesa, maximoClientes) VALUES (?, ?)"
+                    "INSERT INTO mesa (nroMesa, maximoClientes) VALUES (?, ?)"
             );
             ps.setString(1, mesa.getNroMesa());
             ps.setInt(2, mesa.getMaximoClientes());
@@ -76,7 +76,7 @@ public class MesaDAO implements IMesa {
     public boolean eliminar(Mesa mesa) {
         boolean ok = false;
         try {
-            ps = CNX.conectar().prepareStatement("DELETE FROM Mesa WHERE idMesa = ?");
+            ps = CNX.conectar().prepareStatement("DELETE FROM mesa WHERE idMesa = ?");
             ps.setInt(1, mesa.getIdMesa());
             ok = ps.executeUpdate() > 0;
             ps.close();
@@ -94,7 +94,7 @@ public class MesaDAO implements IMesa {
         boolean ok = false;
         try {
             ps = CNX.conectar().prepareStatement(
-                    "UPDATE Mesa SET nroMesa = ?, maximoClientes = ? WHERE idMesa = ?"
+                    "UPDATE mesa SET nroMesa = ?, maximoClientes = ? WHERE idMesa = ?"
             );
             ps.setString(1, mesa.getNroMesa());
             ps.setInt(2, mesa.getMaximoClientes());
